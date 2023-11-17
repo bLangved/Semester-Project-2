@@ -1,0 +1,28 @@
+{
+  "name": "semester-project-2",
+  "version": "0.0.1",
+  "description": "Assigment for Semester Project 2 course at Noroff Front End Development",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "npm test",
+    "lint": "eslint src/**/*.js",
+    "lint-fix": "eslint src/**/*.js --cache --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bLangved/Semester-Project-2.git"
+  },
+  "keywords": [
+    "School",
+    "assigment"
+  ],
+  "author": "Bjørnar Heian Langved <b.langved@icloud.com>",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/bLangved/Semester-Project-2/issues"
+  },
+  "homepage": "https://github.com/bLangved/Semester-Project-2#readme",
+  "devDependencies": {
+    "eslint": "^8.53.0"
+  }
+}
