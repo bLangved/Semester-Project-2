@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npm test",
     "lint": "eslint src/**/*.js",
-    "lint-fix": "eslint src/**/*.js --cache --fix"
+    "lint-fix": "eslint src/**/*.js --cache --fix",
+    "format": "prettier -w src/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/bLangved/Semester-Project-2#readme",
   "devDependencies": {
-    "eslint": "^8.53.0"
+    "eslint": "^8.53.0",
+    "prettier": "^3.1.0"
   }
 }
