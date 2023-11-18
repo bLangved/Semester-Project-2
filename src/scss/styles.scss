@@ -1,11 +1,11 @@
-h1 {
-  text-align: center;
-  color: green;
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
 }
-
-// body {
-//   min-height: 100vh;
-// }
 
 header {
 }
@@ -13,9 +13,46 @@ header {
 main {
 }
 
+.main_auth {
+}
+
+aside {
+}
+
 footer {
   text-align: center;
 }
 
-.test-container {
+// Transitions & effects
+#loginContainer,
+#registerContainer {
+  transition:
+    transform 0.5s ease-in-out,
+    opacity 0.5s ease-in-out;
+}
+
+#registerContainer {
+  transform: translateX(100);
+}
+
+.slide-to-center {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-out-to-left {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.slide-out-to-right {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+/* --- Auth page -- */
+.logoContainer_auth-page {
+  & img {
+    height: 5em;
+  }
 }
