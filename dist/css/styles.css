@@ -4,12 +4,102 @@ body {
   grid-template-areas: "header" "main" "footer";
 }
 
+header {
+  position: fixed;
+  top: 0;
+  height: 5em;
+  background-color: rgb(130, 130, 130);
+}
+
+.nav-toggler {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  cursor: pointer;
+}
+.nav-toggler .hamburger-icon {
+  width: 35px;
+  height: 3px;
+  background-color: #333;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+.nav-toggler .hamburger-icon::before, .nav-toggler .hamburger-icon::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  transition: all 0.3s ease-in-out;
+}
+.nav-toggler .hamburger-icon::before {
+  top: -10px;
+}
+.nav-toggler .hamburger-icon::after {
+  top: 10px;
+}
+
+.nav-toggler .hamburger-icon.active {
+  background-color: transparent;
+}
+.nav-toggler .hamburger-icon.active::before {
+  transform: translateY(10px) rotate(45deg);
+}
+.nav-toggler .hamburger-icon.active::after {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+.nav-content {
+  position: fixed;
+  top: 5em;
+  left: 0;
+  padding: 1.5em;
+  min-height: 100vh;
+  width: 50%;
+  background-color: #fff;
+}
+
+#searchbarButton {
+  border: none;
+  height: 3em;
+  width: 3em;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+}
+#searchbarButton:hover {
+  background-color: rgb(230, 230, 230);
+  transition: background-color 0.1s ease-in-out;
+}
+
+@media only screen and (max-width: 767px) {
+  #searchbarInputContainer {
+    position: fixed;
+    top: 5em;
+    width: 100%;
+  }
+  .searchbar-input {
+    border: none;
+    height: 3em;
+  }
+}
+.nav-item_header {
+  font-size: 1.25rem;
+}
+
+main {
+  margin-top: 5em;
+}
+
 footer {
   text-align: center;
 }
 
 #loginContainer,
-#registerContainer {
+#registerContainer,
+.nav-content {
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 

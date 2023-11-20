@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Auction site - Login</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="dist/css/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/4652493b4c.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="shortcut icon"
+      href="https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=16"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <header></header>
+    <main class="main_auth d-flex align-items-center justify-content-center">
+      <div class="container">
+        <!-- Create listing form -->
+        <div class="container" id="registerContainer">
+          <form class="create-form" id="createForm" method="POST">
+            <div class="form-group mb-3">
+              <label for="title">Title</label>
+              <i
+                class="fa-solid fa-check iconForm-sucsess d-none"
+                id="titleSucsess"
+              ></i>
+              <i
+                class="fa-solid fa-xmark iconForm-error d-none"
+                id="titleError"
+              ></i>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                name="title"
+                placeholder="Enter the listing title here"
+                autocomplete="off"
+                required
+              />
+              <span id="firstNameErrorMessage" class="error-message"></span>
+            </div>
+            <div class="form-group mb-3">
+              <label for="description">Description</label>
+              <i
+                class="fa-solid fa-check iconForm-sucsess d-none"
+                id="descriptionSucsess"
+              ></i>
+              <i
+                class="fa-solid fa-xmark iconForm-error d-none"
+                id="descriptionError"
+              ></i>
+              <!-- The maxlength doesn't need to be used, but sets a max chars value of the input field. Need at least a way to show the user how many cars left-->
+              <textarea
+                class="form-control"
+                id="description"
+                name="description"
+                placeholder="Enter the product description here"
+                autocomplete="off"
+                aria-describedby="descriptionErrorMessage"
+                maxlength="500"
+                required
+              ></textarea>
+              <span id="lastNameErrorMessage" class="error-message"></span>
+            </div>
+            <div class="form-group mb-4">
+              <label for="condition">Condition</label>
+              <i
+                class="fa-solid fa-check iconForm-success d-none"
+                id="conditionSuccess"
+              ></i>
+              <i
+                class="fa-solid fa-xmark iconForm-error d-none"
+                id="conditionError"
+              ></i>
+              <select
+                class="form-control"
+                id="condition"
+                name="condition"
+                required
+              >
+                <option value="" disabled selected>Select Condition</option>
+                <option value="new">New</option>
+                <option value="used">Used</option>
+              </select>
+              <span id="conditionErrorMessage" class="error-message"></span>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="price">Price</label>
+              <i
+                class="fa-solid fa-check iconForm-sucsess d-none"
+                id="priceSecsess"
+              ></i>
+              <i
+                class="fa-solid fa-xmark iconForm-error d-none"
+                id="priceError"
+              ></i>
+              <input
+                type="number"
+                class="form-control"
+                id="price"
+                name="price"
+                autocomplete="off"
+                placeholder="Enter price"
+                min="8"
+                required
+              />
+              <span id="priceErrorMessage" class="error-message"></span>
+            </div>
+            <div class="form-group mb-3">
+              <label for="quantity">Quantity</label>
+              <i
+                class="fa-solid fa-check iconForm-sucsess d-none"
+                id="quantitySucsess"
+              ></i>
+              <i
+                class="fa-solid fa-xmark iconForm-error d-none"
+                id="quantityError"
+              ></i>
+              <input
+                type="number"
+                class="form-control"
+                id="quantity"
+                name="quantity"
+                autocomplete="off"
+                value="1"
+                min="1"
+                max="999"
+                required
+              />
+              <span id="quantityErrorMessage" class="error-message"></span>
+            </div>
+            <div class="form-group mb-3">
+              <label for="mainImgUrl">Main image URL</label>
+              <i
+                class="fa-solid fa-check iconForm-sucsess d-none"
+                id="mainImgUrlSucsess"
+              ></i>
+              <i
+                class="fa-solid fa-xmark iconForm-error d-none"
+                id="mainImgUrlError"
+              ></i>
+              <input
+                type="text"
+                class="form-control"
+                id="mainImgUrl"
+                name="mainImgUrl"
+                autocomplete="off"
+                required
+              />
+              <span id="mainImgUrlErrorMessage" class="error-message"></span>
+            </div>
+            <button
+              type="button"
+              id="additionalImagesButton"
+              class="btn btn-secondary col-12 mb-2"
+            >
+              Add additional images
+            </button>
+            <div id="additionalImagesContainer"></div>
+            <div
+              id="listingErrorMessage"
+              class="error-message mb-2 mt-2 d-none"
+            >
+              The form is not filled out correctly
+            </div>
+            <button
+              type="submit"
+              id="submitButton"
+              class="btn btn-primary col-12"
+            >
+              Submit listing
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer>@copyright bhlweb 2023</footer>
+    <script src="src/js/form-controls/addImagesOnListing.js"></script>
+  </body>
+</html>
