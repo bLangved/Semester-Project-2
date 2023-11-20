@@ -146,3 +146,41 @@ footer {
     height: 5em;
   }
 }
+
+/* --- form validation --- */
+#submitButton {
+  position: relative;
+  overflow: hidden;
+  background-color: rgb(200, 200, 200);
+  z-index: 1;
+  & span {
+    position: relative;
+    z-index: 2;
+  }
+  &:hover {
+    background-color: rgb(180, 180, 180);
+  }
+}
+
+#submitButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--progress-width, 0);
+  height: 100%;
+  background-color: rgb(0, 150, 0);
+  transition: width 0.5s ease;
+  z-index: 0;
+}
+
+.error-message {
+  color: red;
+}
+
+.iconForm-error {
+  color: red;
+}
+.iconForm-sucsess {
+  color: green;
+}

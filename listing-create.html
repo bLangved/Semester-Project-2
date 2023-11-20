@@ -26,7 +26,7 @@
         <!-- Create listing form -->
         <div class="container" id="registerContainer">
           <form class="create-form" id="createForm" method="POST">
-            <div class="form-group mb-3">
+            <div class="form-group mb-4">
               <label for="title">Title</label>
               <i
                 class="fa-solid fa-check iconForm-sucsess d-none"
@@ -47,7 +47,7 @@
               />
               <span id="firstNameErrorMessage" class="error-message"></span>
             </div>
-            <div class="form-group mb-3">
+            <div class="form-group mb-4">
               <label for="description">Description</label>
               <i
                 class="fa-solid fa-check iconForm-sucsess d-none"
@@ -97,7 +97,7 @@
               <label for="price">Price</label>
               <i
                 class="fa-solid fa-check iconForm-sucsess d-none"
-                id="priceSecsess"
+                id="priceSucsess"
               ></i>
               <i
                 class="fa-solid fa-xmark iconForm-error d-none"
@@ -115,30 +115,7 @@
               />
               <span id="priceErrorMessage" class="error-message"></span>
             </div>
-            <div class="form-group mb-3">
-              <label for="quantity">Quantity</label>
-              <i
-                class="fa-solid fa-check iconForm-sucsess d-none"
-                id="quantitySucsess"
-              ></i>
-              <i
-                class="fa-solid fa-xmark iconForm-error d-none"
-                id="quantityError"
-              ></i>
-              <input
-                type="number"
-                class="form-control"
-                id="quantity"
-                name="quantity"
-                autocomplete="off"
-                value="1"
-                min="1"
-                max="999"
-                required
-              />
-              <span id="quantityErrorMessage" class="error-message"></span>
-            </div>
-            <div class="form-group mb-3">
+            <div class="form-group mb-4">
               <label for="mainImgUrl">Main image URL</label>
               <i
                 class="fa-solid fa-check iconForm-sucsess d-none"
@@ -165,7 +142,55 @@
             >
               Add additional images
             </button>
-            <div id="additionalImagesContainer"></div>
+            <div class="mb-2" id="additionalImagesContainer"></div>
+            <div class="mb-4">
+              <div class="row">
+                <div class="form-group col-6">
+                  <label for="endingDate">Ending date</label>
+                  <i
+                    class="fa-solid fa-check iconForm-sucsess d-none"
+                    id="endingDateSucsess"
+                  ></i>
+                  <i
+                    class="fa-solid fa-xmark iconForm-error d-none"
+                    id="endingDateError"
+                  ></i>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="endingDate"
+                    name="endingDate"
+                    required
+                  />
+                  <span
+                    id="endingDateErrorMessage"
+                    class="error-message"
+                  ></span>
+                </div>
+                <div class="form-group col-6">
+                  <label for="endingTime">Ending time</label>
+                  <i
+                    class="fa-solid fa-check iconForm-sucsess d-none"
+                    id="endingTimeSucsess"
+                  ></i>
+                  <i
+                    class="fa-solid fa-xmark iconForm-error d-none"
+                    id="endingTimeError"
+                  ></i>
+                  <input
+                    type="time"
+                    class="form-control"
+                    id="endingTime"
+                    name="endingTime"
+                    required
+                  />
+                  <span
+                    id="endingDateErrorMessage"
+                    class="error-message"
+                  ></span>
+                </div>
+              </div>
+            </div>
             <div
               id="listingErrorMessage"
               class="error-message mb-2 mt-2 d-none"
@@ -175,7 +200,7 @@
             <button
               type="submit"
               id="submitButton"
-              class="btn btn-primary col-12"
+              class="btn btn-primary col-12 mb-4"
             >
               Submit listing
             </button>
@@ -185,5 +210,6 @@
     </main>
     <footer>@copyright bhlweb 2023</footer>
     <script src="src/js/form-controls/addImagesOnListing.js"></script>
+    <script src="src/js/form-controls/dateFormatForm.js"></script>
   </body>
 </html>

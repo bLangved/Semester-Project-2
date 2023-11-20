@@ -35,56 +35,55 @@
         <div class="container" id="loginContainer">
           <form class="login-form" id="loginForm" method="POST">
             <div class="form-group mb-3">
-              <label for="emailLogin">Email</label>
+              <label for="email">Email</label>
               <i
                 class="fa-solid fa-check iconForm-sucsess d-none"
-                id="emailLoginSucsess"
+                id="emailSucsess"
               ></i>
               <i
                 class="fa-solid fa-xmark iconForm-error d-none"
-                id="emailLoginError"
+                id="emailError"
               ></i>
               <input
                 type="email"
                 class="form-control"
-                id="emailLogin"
-                name="emailLogin"
+                id="email"
+                name="email"
+                placeholder="Valid @stud.noroff.no or @noroff.no"
                 required
               />
               <span id="emailErrorMessage" class="error-message"></span>
             </div>
             <div class="form-group mb-4">
-              <label for="passwordLogin">Password</label>
+              <label for="password">Password</label>
               <i
                 class="fa-solid fa-check iconForm-sucsess d-none"
-                id="passwordLoginSucsess"
+                id="passwordSucsess"
               ></i>
               <i
                 class="fa-solid fa-xmark iconForm-error d-none"
-                id="passwordLoginError"
+                id="passwordError"
               ></i>
               <input
                 type="password"
                 class="form-control"
-                id="passwordLogin"
-                name="passwordLogin"
+                id="password"
+                name="password"
                 minlength="8"
+                placeholder="Minimum 8 characters"
                 required
               />
               <span id="passwordErrorMessage" class="error-message"></span>
             </div>
-            <div
-              id="loginUserErrorMessage"
-              class="error-message mb-2 mt-2 d-none"
-            >
+            <div id="loginErrorMessage" class="error-message mb-2 mt-2 d-none">
               Login credentials are not correctly filled out
             </div>
             <button
               type="submit"
-              class="btn btn-primary col-12"
-              id="submitButtonLogin"
+              class="btn col-12 submit-btn-custom"
+              id="submitButton"
             >
-              Login
+              <span>Login</span>
             </button>
             <div class="text-center mt-4">
               <p>
@@ -276,5 +275,6 @@
     </main>
     <footer>@copyright bhlweb 2023</footer>
     <script src="src/js/form-controls/formSwap.js"></script>
+    <script type="module" src="src/js/forms/loginForm.js"></script>
   </body>
 </html>
