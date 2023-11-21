@@ -31,6 +31,11 @@
           <p id="logoTextAuthPage">The prefered auction site</p>
         </div>
 
+        <div class="container text-center d-none" id="loadingContainer">
+          <span id="loadingText"></span>
+          <div id="loadingAnimation"></div>
+        </div>
+
         <!-- Login section -->
         <div class="container" id="loginContainer">
           <form class="login-form" id="loginForm" method="POST">
@@ -268,12 +273,10 @@
             </div>
           </form>
         </div>
-        <div class="text-center">
-          <p>Go back to <a href="index.html">homepage</a></p>
-        </div>
       </div>
     </main>
     <footer>@copyright bhlweb 2023</footer>
+    <script type="module" src="src/js/animations/loadingAnimation.js"></script>
     <script src="src/js/form-controls/formSwap.js"></script>
     <script type="module" src="src/js/forms/loginForm.js"></script>
   </body>

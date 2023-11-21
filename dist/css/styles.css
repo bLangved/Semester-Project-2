@@ -122,6 +122,44 @@ footer {
   opacity: 0;
 }
 
+#loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15em;
+}
+#loadingContainer #loadingText {
+  font-size: 1.5em;
+  margin-right: 20px;
+}
+#loadingContainer #loadingAnimation {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 4em;
+  height: 4em;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    border-top-color: #3498db;
+    transform: rotate(0deg);
+  }
+  15%, 30% {
+    border-top-color: #e74c3c;
+  }
+  45%, 60% {
+    border-top-color: #2ecc71;
+  }
+  75%, 90% {
+    border-top-color: #95cc2e;
+  }
+  100% {
+    border-top-color: #3498db;
+    transform: rotate(360deg);
+  }
+}
 /* --- Auth page -- */
 .logoContainer_auth-page img {
   height: 5em;

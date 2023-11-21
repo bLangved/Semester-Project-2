@@ -3,14 +3,12 @@ import {
   checkLength,
 } from "../validation/inputValidation.js";
 import { login } from "../api/auth/login.js";
+import loadingAnimation from "../animations/loadingAnimation.js";
 
-// const textLogin = document.querySelector("#textLogin");
 const loginForm = document.querySelector("#loginForm");
 const formErrorMessage = document.querySelector("#loginErrorMessage");
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
-// const emailErrorMessage = document.querySelector("#emailErrorMessage");
-// const passwordErrorMessage = document.querySelector("#passwordErrorMessage");
 const iconMailSucsess = document.querySelector("#emailSucsess");
 const iconMailError = document.querySelector("#emailError");
 const iconPasswordSucsess = document.querySelector("#passwordSucsess");
@@ -49,7 +47,10 @@ function validateForm() {
   return validationPassed;
 }
 
-// This block validates the form in real-time as the user types into the input fields
+/**
+ * This block validates the form in real-time as the user types into the input fields
+ * SubmitButton gets a transition color effect
+ */
 requiredFields.forEach((field) => {
   field.targeted = false;
   field.addEventListener("input", () => {
@@ -70,9 +71,8 @@ requiredFields.forEach((field) => {
   });
 });
 
-// This block handles the form submission event
 submitButton.addEventListener("click", async (e) => {
-  e.preventDefault(); // Prevent the form from submitting by default
+  e.preventDefault();
   const isValidationPassed = validateForm();
   if (isValidationPassed !== requiredFields.length) {
     formErrorMessage.classList.remove("d-none");
@@ -81,15 +81,12 @@ submitButton.addEventListener("click", async (e) => {
   } else {
     formErrorMessage.textContent = "";
 
-    // loginUrl = "FILL INN CORRECT INFO";
-
-    const userToLogin = {
+    const loginCredentials = {
       email: email.value,
       password: password.value,
     };
-    // textLogin.textContent = "Logging inn to Chatably";
-    // showLoadingAnimation();
+    loadingAnimation.classList.remove("d-none");
     loginForm.classList.add("d-none");
-    login(userToLogin);
+    login(loginCredentials);
   }
 });
