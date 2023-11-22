@@ -33,3 +33,17 @@ export function validateNoroffEmail(email) {
   const patternMatches = regex.test(email);
   return patternMatches;
 }
+
+/**
+ * @description Checks if string is a valid URL
+ * @param {string} urlString
+ * @returns {bool}
+ */
+export function isValidUrl(urlString) {
+  try {
+    new URL(urlString);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}

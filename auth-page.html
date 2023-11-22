@@ -86,7 +86,7 @@
             <button
               type="submit"
               class="btn col-12 submit-btn-custom"
-              id="submitButton"
+              id="submitButtonLogin"
             >
               <span>Login</span>
             </button>
@@ -107,70 +107,72 @@
 
         <!-- Register section -->
         <div class="container d-none" id="registerContainer">
-          <form class="create-form" id="createForm" method="POST">
+          <form class="create-form" id="registerForm" method="POST">
             <div class="form-group mb-3">
-              <label for="createFirstName">First name</label>
+              <label for="registerFirstName">First name</label>
               <i
                 class="fa-solid fa-check iconForm-sucsess d-none"
-                id="createFirstNameSucsess"
+                id="registerFirstNameSucsess"
               ></i>
               <i
                 class="fa-solid fa-xmark iconForm-error d-none"
-                id="createFirstNameError"
+                id="registerFirstNameError"
               ></i>
               <input
                 type="text"
                 class="form-control"
-                id="createFirstName"
+                id="registerFirstName"
                 name="firstName"
                 autocomplete="off"
+                placeholder="Your first name"
                 required
               />
               <span id="firstNameErrorMessage" class="error-message"></span>
             </div>
             <div class="form-group mb-3">
-              <label for="createLastName">Last name</label>
+              <label for="registerLastName">Last name</label>
               <i
                 class="fa-solid fa-check iconForm-sucsess d-none"
-                id="createLastNameSucsess"
+                id="registerLastNameSucsess"
               ></i>
               <i
                 class="fa-solid fa-xmark iconForm-error d-none"
-                id="createLastNameError"
+                id="registerLastNameError"
               ></i>
               <input
                 type="text"
                 class="form-control"
-                id="createLastName"
+                id="registerLastName"
                 name="lastName"
                 autocomplete="off"
+                placeholder="Your last name / surname"
                 required
               />
               <span id="lastNameErrorMessage" class="error-message"></span>
             </div>
             <div class="form-group mb-3">
-              <label for="createEmail">Email</label>
+              <label for="registerEmail">Email</label>
               <i
                 class="fa-solid fa-check iconForm-sucsess d-none"
-                id="createEmailSucsess"
+                id="registerEmailSucsess"
               ></i>
               <i
                 class="fa-solid fa-xmark iconForm-error d-none"
-                id="createEmailError"
+                id="registerEmailError"
               ></i>
               <div class="row align-items-center">
                 <div class="col-6">
                   <input
                     type="email"
                     class="form-control col-6"
-                    id="createEmail"
-                    name="createEmail"
+                    id="registerEmail"
+                    name="registerEmail"
                     autocomplete="off"
                     required
                   />
                 </div>
                 <div class="col-6">
-                  <select class="form-select" id="emailType">
+                  <select class="form-select" id="registerEmailType">
                     <option value="stud.noroff.no">
                       @stud.noroff.no (Student)
                     </option>
@@ -181,41 +183,42 @@
               <span id="emailErrorMessage" class="error-message"></span>
             </div>
             <div class="form-group mb-4">
-              <label for="createPassword">Password</label>
+              <label for="registerPassword">Password</label>
               <i
                 class="fa-solid fa-check iconForm-sucsess d-none"
-                id="createPasswordSucsess"
+                id="registerPasswordSucsess"
               ></i>
               <i
                 class="fa-solid fa-xmark iconForm-error d-none"
-                id="createPasswordError"
+                id="registerPasswordError"
               ></i>
               <input
                 type="password"
                 class="form-control"
-                id="createPassword"
-                name="createPassword"
+                id="registerPassword"
+                name="registerPassword"
                 autocomplete="off"
                 minlength="8"
+                placeholder="Minimum 8 characters"
                 required
               />
               <span id="passwordErrorMessage" class="error-message"></span>
             </div>
             <div class="form-group mb-4">
-              <label for="createPasswordConfirm">Confirm password</label>
+              <label for="registerPasswordConfirm">Confirm password</label>
               <i
                 class="fa-solid fa-check iconForm-sucsess d-none"
-                id="createPasswordConfirmSucsess"
+                id="registerPasswordConfirmSucsess"
               ></i>
               <i
                 class="fa-solid fa-xmark iconForm-error d-none"
-                id="createPasswordConfirmError"
+                id="registerPasswordConfirmError"
               ></i>
               <input
                 type="password"
                 class="form-control"
-                id="createPasswordConfirm"
-                name="createPasswordConfirm"
+                id="registerPasswordConfirm"
+                name="registerPasswordConfirm"
                 autocomplete="off"
                 minlength="8"
                 required
@@ -226,37 +229,37 @@
               ></span>
             </div>
             <div class="form-group mb-3">
-              <label for="createAvatar">Avatar URL</label>
+              <label for="registerAvatar">Avatar URL</label>
               <i
                 class="fa-solid fa-check iconForm-sucsess d-none"
-                id="createAvatarSucsess"
+                id="registerAvatarSucsess"
               ></i>
               <i
                 class="fa-solid fa-xmark iconForm-error d-none"
-                id="createAvatarError"
+                id="registerAvatarError"
               ></i>
               <input
                 type="text"
                 class="form-control"
-                id="createAvatar"
-                name="Avatar"
+                id="registerAvatar"
+                name="registerAvatar"
                 autocomplete="off"
-                required
+                placeholder="An url for a profile avatar (not required)."
               />
               <span id="AvatarErrorMessage" class="error-message"></span>
             </div>
             <div
-              id="createUserErrorMessage"
+              id="registerUserErrorMessage"
               class="error-message mb-2 mt-2 d-none"
             >
               The form is not filled out correctly
             </div>
             <button
               type="submit"
-              id="submitButton"
-              class="btn btn-primary col-12"
+              class="btn col-12 submit-btn-custom"
+              id="submitButtonRegister"
             >
-              Register account
+              <span>Register account</span>
             </button>
 
             <div class="text-center mt-4">
@@ -279,5 +282,6 @@
     <script type="module" src="src/js/animations/loadingAnimation.js"></script>
     <script src="src/js/form-controls/formSwap.js"></script>
     <script type="module" src="src/js/forms/loginForm.js"></script>
+    <script type="module" src="src/js/forms/registerForm.js"></script>
   </body>
 </html>

@@ -1,7 +1,19 @@
+html {
+  color-scheme: light dark;
+}
+
 body {
   min-height: 100vh;
   display: grid;
   grid-template-areas: "header" "main" "footer";
+  background-color: rgb(250, 250, 250);
+  color: rgb(10, 10, 10);
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: rgb(10, 10, 10);
+    color: rgb(250, 250, 250);
+  }
 }
 
 header {
@@ -59,19 +71,22 @@ header {
   padding: 1.5em;
   min-height: 100vh;
   width: 50%;
-  background-color: #fff;
+  background-color: rgb(245, 245, 245);
 }
 
-#searchbarButton {
+#searchbarContainer #searchbarButton {
   border: none;
   height: 3em;
   width: 3em;
   border-radius: 50%;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(245, 245, 245);
 }
-#searchbarButton:hover {
+#searchbarContainer #searchbarButton:hover {
   background-color: rgb(230, 230, 230);
   transition: background-color 0.1s ease-in-out;
+}
+#searchbarContainer i {
+  color: rgb(10, 10, 10);
 }
 
 @media only screen and (max-width: 767px) {
@@ -170,21 +185,25 @@ footer {
 }
 
 /* --- form validation --- */
-#submitButton {
+#submitButtonLogin,
+#submitButtonRegister {
   position: relative;
   overflow: hidden;
   background-color: rgb(200, 200, 200);
   z-index: 1;
 }
-#submitButton span {
+#submitButtonLogin span,
+#submitButtonRegister span {
   position: relative;
   z-index: 2;
 }
-#submitButton:hover {
+#submitButtonLogin:hover,
+#submitButtonRegister:hover {
   background-color: rgb(180, 180, 180);
 }
 
-#submitButton::before {
+#submitButtonLogin::before,
+#submitButtonRegister::before {
   content: "";
   position: absolute;
   top: 0;

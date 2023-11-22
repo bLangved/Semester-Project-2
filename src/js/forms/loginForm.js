@@ -9,16 +9,18 @@ const loginForm = document.querySelector("#loginForm");
 const formErrorMessage = document.querySelector("#loginErrorMessage");
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
+
 const iconMailSucsess = document.querySelector("#emailSucsess");
 const iconMailError = document.querySelector("#emailError");
 const iconPasswordSucsess = document.querySelector("#passwordSucsess");
 const iconPasswordError = document.querySelector("#passwordError");
-const submitButton = document.querySelector("#submitButton");
+
+const submitButton = document.querySelector("#submitButtonLogin");
 
 const requiredFields = [email, password];
 /**
  * Checks email and password if it matches patterns for validation
- * @returns {bool}
+ * @returns {number}
  */
 function validateForm() {
   let validationPassed = 0;
