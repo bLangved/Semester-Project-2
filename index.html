@@ -46,15 +46,20 @@
         >
           <ul class="navbar-nav gap-3">
             <li class="nav-item nav-item_header">
-              <a class="nav-link" href="/index.html">
-                <i class="fa-solid fa-house"></i>
-                <span>Homepage</span>
+              <a class="nav-link" href="/profile.html">
+                <img
+                  class="img-thumbnail avatar-nav"
+                  src="/images/avatar.jpeg"
+                  alt="profile image"
+                  id="avatar"
+                />
+                <span>Profile</span>
               </a>
             </li>
             <li class="nav-item nav-item_header">
-              <a class="nav-link" href="/profile.html">
-                <i class="fa-solid fa-user"></i>
-                <span>My account</span>
+              <a class="nav-link" href="/index.html">
+                <i class="fa-solid fa-house"></i>
+                <span>Homepage</span>
               </a>
             </li>
             <li class="nav-item nav-item_header">
@@ -75,10 +80,16 @@
                 <span>Watchlist</span>
               </a>
             </li>
-            <li class="nav-item nav-item_header">
+            <li class="nav-item nav-item_header" id="loginItem">
               <a class="nav-link" href="/auth-page.html">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                <span>Login / logout</span>
+                <span>Login</span>
+              </a>
+            </li>
+            <li class="nav-item nav-item_header" id="logoutItem">
+              <a class="nav-link" href="">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>logout</span>
               </a>
             </li>
           </ul>
@@ -234,8 +245,8 @@
       </div>
     </main>
     <footer>@copyright bhlweb 2023</footer>
+    <script type="module" src="src/js/api/auth/userState.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="src/js/header/toggleComponents.js"></script>
-    <!-- <script src="src/js/header/searchbar.js"></script> -->
   </body>
 </html>

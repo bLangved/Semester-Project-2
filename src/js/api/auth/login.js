@@ -24,7 +24,9 @@ export async function login(userData) {
       delete profile.accessToken;
       save("profile", profile);
       // Return user to destination
-
+      setTimeout(() => {
+        window.location.href = "/index.html";
+      }, 2000);
       loadingAnimation.classList.add("d-none");
       return profile;
     } else {
