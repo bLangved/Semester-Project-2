@@ -2,6 +2,17 @@ html {
   color-scheme: light dark;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+video {
+  max-width: 100%;
+  cursor: pointer;
+}
+
 body {
   min-height: 100vh;
   display: grid;
@@ -74,6 +85,10 @@ header {
   background-color: rgb(245, 245, 245);
 }
 
+.credits-icon {
+  color: #d5ce0c;
+}
+
 #searchbarContainer #searchbarButton {
   border: none;
   height: 3em;
@@ -104,8 +119,12 @@ header {
   font-size: 1.25rem;
 }
 
-.avatar-nav {
-  height: 2em;
+#avatarContainer img {
+  height: 3em;
+  border-radius: 50%;
+}
+#avatarContainer span {
+  font-size: 1.25rem;
 }
 
 main {
@@ -237,6 +256,36 @@ footer {
 
 .iconForm-sucsess {
   color: green;
+}
+
+/* --- Profile page --- */
+#profileContainer img {
+  height: 15em;
+  border-radius: 50%;
+}
+#profileContainer img:hover {
+  transition: filter 0.2s ease-in-out;
+  filter: brightness(85%);
+}
+#profileContainer img:active {
+  border: 5px solid white;
+  filter: brightness(70%);
+}
+#profileContainer span {
+  font-size: 1.5rem;
+}
+#profileContainer .avatar-options-container {
+  position: fixed;
+  top: 24em;
+}
+@media screen and (min-width: 768px) {
+  #profileContainer img {
+    height: 20em;
+  }
+  #profileContainer .avatar-options-container {
+    position: fixed;
+    top: 29em;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
