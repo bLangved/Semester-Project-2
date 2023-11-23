@@ -184,6 +184,18 @@ footer {
   height: 5em;
 }
 
+#statusContainer #statusIconCheck,
+#statusContainer #statusIconXmark {
+  font-size: 2.5rem;
+  padding: 1.5em;
+}
+#statusContainer #statusIconCheck {
+  color: green;
+}
+#statusContainer #statusIconXmark {
+  color: red;
+}
+
 /* --- form validation --- */
 #submitButtonLogin,
 #submitButtonRegister {

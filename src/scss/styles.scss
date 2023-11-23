@@ -217,6 +217,20 @@ footer {
   }
 }
 
+#statusContainer {
+  & #statusIconCheck,
+  #statusIconXmark {
+    font-size: 2.5rem;
+    padding: 1.5em;
+  }
+  & #statusIconCheck {
+    color: green;
+  }
+  & #statusIconXmark {
+    color: red;
+  }
+}
+
 /* --- form validation --- */
 #submitButtonLogin,
 #submitButtonRegister {

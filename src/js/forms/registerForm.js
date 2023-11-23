@@ -3,10 +3,11 @@ import {
   checkLength,
   isValidUrl,
 } from "../validation/inputValidation.js";
-// import loadingAnimation from "../animations/loadingAnimation.js";
+import loadingAnimation from "../animations/loadingAnimation.js";
+import { register } from "../api/auth/register.js";
 
-// const form = document.querySelector("#registerForm");
-// const formErrorMessage = document.querySelector("#registerUserErrorMessage");
+const registerForm = document.querySelector("#registerForm");
+const formErrorMessage = document.querySelector("#registerErrorMessage");
 const firstName = document.querySelector("#registerFirstName");
 const lastName = document.querySelector("#registerLastName");
 const email = document.querySelector("#registerEmail");
@@ -117,8 +118,8 @@ function validateForm() {
   }
 
   /**
-   * @description Function that autogenerates an email for the user that matches API email-pattern requirements.
-   * @description User chooses if said user is student/employee by dropdown menu
+   * @description Autogenerates an email for the user that matches API email-pattern requirements.
+   * @description User choose if said user is student/employee by dropdown menu
    */
   function updateEmailBasedOnName() {
     const first = firstName.value.replace(/\s+/g, "");
@@ -137,7 +138,7 @@ function validateForm() {
 }
 
 /**
- * This block validates the form in real-time as the user types into the input fields
+ * Validates the form in real-time as the user types into the input fields
  * SubmitButton gets a transition color effect
  */
 requiredFields.forEach((field) => {
@@ -152,15 +153,15 @@ requiredFields.forEach((field) => {
         break;
       case 2:
         submitButton.style.setProperty("--progress-width", "40%");
-        submitButton.style.color = "white";
+        submitButton.style.color = "black";
         break;
       case 3:
         submitButton.style.setProperty("--progress-width", "60%");
-        submitButton.style.color = "white";
+        submitButton.style.color = "black";
         break;
       case 4:
         submitButton.style.setProperty("--progress-width", "80%");
-        submitButton.style.color = "white";
+        submitButton.style.color = "black";
         break;
       case 5:
         submitButton.style.setProperty("--progress-width", "100%");
@@ -172,23 +173,25 @@ requiredFields.forEach((field) => {
   });
 });
 
-// This block handles the form submission event
-// submitButton.addEventListener("click", async (e) => {
-//   e.preventDefault(); // Prevent the form from submitting by default
-//   const isValidationPassed = validateForm();
-//   if (!isValidationPassed) {
-//     formErrorMessage.classList.remove("d-none");
-//     formErrorMessage.textContent =
-//       "Please ensure all fields are valid before proceeding!";
-//   } else {
-//     formErrorMessage.textContent = ""; // Clear any existing error messages
-//     const fullName = `${firstName.value}_${lastName.value}`; // Required Concatination by API
-//     const userToRegister = {
-//       name: fullName,
-//       email: email.value,
-//       password: password.value,
-//     };
-//     form.classList.add("d-none");
-//     await registerUser(registerUrl, userToRegister);
-//   }
-// });
+// Handles the form submission event
+submitButton.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const isValidationPassed = validateForm();
+  if (!isValidationPassed) {
+    formErrorMessage.classList.remove("d-none");
+    formErrorMessage.textContent =
+      "Please ensure all fields are valid before proceeding!";
+  } else {
+    formErrorMessage.textContent = "";
+    const fullName = `${firstName.value}_${lastName.value}`;
+    const registerCredentials = {
+      name: fullName,
+      email: email.value,
+      password: password.value,
+      avatar: avatar.value || null,
+    };
+    loadingAnimation.classList.remove("d-none");
+    registerForm.classList.add("d-none");
+    await register(registerCredentials);
+  }
+});

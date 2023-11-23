@@ -2,8 +2,8 @@ import {
   validateNoroffEmail,
   checkLength,
 } from "../validation/inputValidation.js";
-import { login } from "../api/auth/login.js";
 import loadingAnimation from "../animations/loadingAnimation.js";
+import { login } from "../api/auth/login.js";
 
 const loginForm = document.querySelector("#loginForm");
 const formErrorMessage = document.querySelector("#loginErrorMessage");
@@ -50,7 +50,7 @@ function validateForm() {
 }
 
 /**
- * This block validates the form in real-time as the user types into the input fields
+ * Validates the form in real-time as the user types into the input fields
  * SubmitButton gets a transition color effect
  */
 requiredFields.forEach((field) => {
@@ -73,6 +73,7 @@ requiredFields.forEach((field) => {
   });
 });
 
+// Handles the form submission event
 submitButton.addEventListener("click", async (e) => {
   e.preventDefault();
   const isValidationPassed = validateForm();
@@ -89,6 +90,6 @@ submitButton.addEventListener("click", async (e) => {
     };
     loadingAnimation.classList.remove("d-none");
     loginForm.classList.add("d-none");
-    login(loginCredentials);
+    await login(loginCredentials);
   }
 });

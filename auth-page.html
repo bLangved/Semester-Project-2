@@ -35,6 +35,21 @@
           <span id="loadingText"></span>
           <div id="loadingAnimation"></div>
         </div>
+        <!-- Status messages -->
+        <div
+          class="container text-center d-flex flex-column align-items-center justify-content-center d-none"
+          id="statusContainer"
+        >
+          <i
+            class="fa-regular fa-circle-check fa-2xl d-none"
+            id="statusIconCheck"
+          ></i>
+          <i
+            class="fa-regular fa-circle-xmark fa-2xl d-none"
+            id="statusIconXmark"
+          ></i>
+          <span id="statusMessage"></span>
+        </div>
 
         <!-- Login section -->
         <div class="container" id="loginContainer">
@@ -57,7 +72,6 @@
                 placeholder="Valid @stud.noroff.no or @noroff.no"
                 required
               />
-              <span id="emailErrorMessage" class="error-message"></span>
             </div>
             <div class="form-group mb-4">
               <label for="password">Password</label>
@@ -78,7 +92,6 @@
                 placeholder="Minimum 8 characters"
                 required
               />
-              <span id="passwordErrorMessage" class="error-message"></span>
             </div>
             <div id="loginErrorMessage" class="error-message mb-2 mt-2 d-none">
               Login credentials are not correctly filled out
@@ -127,7 +140,6 @@
                 placeholder="Your first name"
                 required
               />
-              <span id="firstNameErrorMessage" class="error-message"></span>
             </div>
             <div class="form-group mb-3">
               <label for="registerLastName">Last name</label>
@@ -148,7 +160,6 @@
                 placeholder="Your last name / surname"
                 required
               />
-              <span id="lastNameErrorMessage" class="error-message"></span>
             </div>
             <div class="form-group mb-3">
               <label for="registerEmail">Email</label>
@@ -180,7 +191,6 @@
                   </select>
                 </div>
               </div>
-              <span id="emailErrorMessage" class="error-message"></span>
             </div>
             <div class="form-group mb-4">
               <label for="registerPassword">Password</label>
@@ -202,7 +212,6 @@
                 placeholder="Minimum 8 characters"
                 required
               />
-              <span id="passwordErrorMessage" class="error-message"></span>
             </div>
             <div class="form-group mb-4">
               <label for="registerPasswordConfirm">Confirm password</label>
@@ -223,10 +232,6 @@
                 minlength="8"
                 required
               />
-              <span
-                id="passwordConfirmErrorMessage"
-                class="error-message"
-              ></span>
             </div>
             <div class="form-group mb-3">
               <label for="registerAvatar">Avatar URL</label>
@@ -244,12 +249,11 @@
                 id="registerAvatar"
                 name="registerAvatar"
                 autocomplete="off"
-                placeholder="An url for a profile avatar (not required)."
+                placeholder="An url for a profile avatar (optional)."
               />
-              <span id="AvatarErrorMessage" class="error-message"></span>
             </div>
             <div
-              id="registerUserErrorMessage"
+              id="registerErrorMessage"
               class="error-message mb-2 mt-2 d-none"
             >
               The form is not filled out correctly

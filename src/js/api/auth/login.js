@@ -2,20 +2,26 @@ import { apiPath } from "../baseUrl.js";
 import { save } from "../../storage/save.js";
 import loadingAnimation from "../../animations/loadingAnimation.js";
 const urlEndpoint = `${apiPath}/auction/auth/login`;
+
+const statusContainer = document.querySelector("#statusContainer");
+const statusMessage = document.querySelector("#statusMessage");
+const statusIconCheck = document.querySelector("#statusIconCheck");
+const statusIconXmark = document.querySelector("#statusIconXmark");
+
 /**
  * @description Login user to database
  * @param {string} urlEndpoint login api endpoint
- * @param {object} userData user object
+ * @param {object} userObject user object
  * @returns The user's profile data
  */
-export async function login(userData) {
+export async function login(userObject) {
   try {
     const postData = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userData),
+      body: JSON.stringify(userObject),
     };
     const response = await fetch(urlEndpoint, postData);
     if (response.ok) {
@@ -23,14 +29,23 @@ export async function login(userData) {
       save("token", profile.accessToken);
       delete profile.accessToken;
       save("profile", profile);
-      // Return user to destination
+      statusContainer.classList.toggle("d-none");
+      statusMessage.innerText =
+        "Sucsessful login. You will redirected to homepage shortly";
+      statusIconCheck.classList.toggle("d-none");
+      loadingAnimation.classList.add("d-none");
       setTimeout(() => {
         window.location.href = "/index.html";
-      }, 2000);
-      loadingAnimation.classList.add("d-none");
+      }, 5000);
       return profile;
     } else {
+      statusContainer.classList.toggle("d-none");
+      statusIconXmark.classList.toggle("d-none");
+      loadingAnimation.classList.add("d-none");
       displayLoginError(response.status);
+      setTimeout(() => {
+        window.location.reload();
+      }, 5000);
     }
   } catch (error) {
     console.error("Login error:", error);
@@ -45,5 +60,5 @@ function displayLoginError(statusCode) {
     default: "Some error occurred. Try again later.",
   };
   const errorMessage = messageMap[statusCode] || messageMap.default;
-  alert(errorMessage);
+  statusMessage.innerText = errorMessage;
 }
