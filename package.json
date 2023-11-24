@@ -1,6 +1,6 @@
 {
   "name": "semester-project-2",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Assigment for Semester Project 2 course at Noroff Front End Development",
   "main": "src/index.js",
   "scripts": {
