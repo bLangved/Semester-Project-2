@@ -1,7 +1,7 @@
 import { logout } from "./logout.js";
 import { formatName } from "../../formatting/profileObject.js";
 
-function toggleLoginDisplay() {
+export function toggleLoginDisplay() {
   const isLoggedIn = Boolean(localStorage.getItem("token"));
   document.querySelector("#loginItem").classList.toggle("d-none", isLoggedIn);
   document.querySelector("#logoutItem").classList.toggle("d-none", !isLoggedIn);

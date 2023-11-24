@@ -1,7 +1,7 @@
 import { logout } from "../api/auth/logout.js";
 import { formatFullName } from "../formatting/profileObject.js";
 
-function initializeProfilePage() {
+export function initializeProfilePage() {
   const isLoggedIn = Boolean(localStorage.getItem("token"));
   document.querySelector("#loginItem").classList.toggle("d-none", isLoggedIn);
   document.querySelector("#logoutItem").classList.toggle("d-none", !isLoggedIn);

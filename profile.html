@@ -138,15 +138,38 @@
           class="text-center d-flex flex-column align-items-center justify-content-center mt-5 gap-3"
           id="profileContainer"
         >
-          <img class="img" src="" alt="Profile picture" id="avatarProfile" />
+          <img
+            class="img"
+            src="images/avatar.jpeg"
+            alt="Profile picture"
+            id="avatarProfile"
+          />
           <div
             class="avatar-options-container card d-flex flex-column d-none"
             id="avatarOptions"
           >
-            <button class="btn">See avatar</button>
-            <button class="btn">Update avatar</button>
-            <button class="btn">Delete avatar</button>
+            <button class="btn" id="viewAvatarBtn">View avatar</button>
+            <button class="btn" id="updateAvatarBtn">Update avatar</button>
+            <button class="btn" id="deleteAvatarBtn">Delete avatar</button>
           </div>
+          <form
+            class="container d-flex flex-column form-group gap-2 d-none"
+            id="updateAvatarForm"
+          >
+            <input
+              type="text"
+              class="form-control"
+              id="newAvatarUrl"
+              placeholder="Avatar Url"
+              required
+            />
+            <button type="submit" id="submitAvatarUrl" class="btn btn-primary">
+              Update avatar
+            </button>
+            <button type="button" id="closeAvatarUrl" class="btn btn-danger">
+              Close
+            </button>
+          </form>
           <span class="" id="nameProfile"></span>
           <div>
             <i class="fa-solid fa-coins fa-xl credits-icon"></i>
@@ -163,6 +186,6 @@
     <script src="src/js/header/toggleComponents.js"></script>
     <script type="module" src="src/js/api/auth/userState.js"></script>
     <script type="module" src="src/js/profile/user.js"></script>
-    <script src="src/js/profile/updateAvatar.js"></script>
+    <script type="module" src="src/js/profile/profileAvatar.js"></script>
   </body>
 </html>

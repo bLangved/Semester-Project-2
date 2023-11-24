@@ -5,11 +5,11 @@ const updateAvatarInput = document.querySelector("#newAvatarUrl");
 const userName = JSON.parse(localStorage.getItem("profile"))?.name;
 const urlEndpoint = `${apiPath}/auction/profiles/${userName}/media`;
 /**
- * @description Recieves valid url-string for profile-avatar, and updates database with said string
- * @param {string} imageUrl - url where image is stored
+ * @description Updates avatar in database with an empty string
  */
-export async function updateAvatar(imageUrl) {
+export async function deleteAvatar() {
   const token = JSON.parse(localStorage.getItem("token"));
+  const emptyAvatar = "";
   try {
     const data = {
       method: "PUT",
@@ -17,14 +17,14 @@ export async function updateAvatar(imageUrl) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ avatar: imageUrl }),
+      body: JSON.stringify({ avatar: emptyAvatar }),
     };
     const response = await fetch(urlEndpoint, data);
     if (response.ok) {
       await response.json();
       updateAvatarInput.value = "";
       const profile = JSON.parse(localStorage.getItem("profile"));
-      profile.avatar = imageUrl;
+      profile.avatar = emptyAvatar;
       localStorage.setItem("profile", JSON.stringify(profile));
       initializeProfilePage();
       toggleLoginDisplay();
