@@ -20,22 +20,159 @@
     />
   </head>
   <body>
-    <header></header>
+    <header
+      class="container-fluid d-flex align-items-center justify-content-between"
+    >
+      <!--Nav button-->
+      <nav
+        class="col-4 navbar d-flex align-items-center justify-content-center"
+        id="navContainer"
+      >
+        <button
+          class="nav-toggler"
+          id="navToggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="hamburger-icon d-flex"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse shadow-lg nav-content"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav gap-3">
+            <li class="nav-item nav-item_header" id="creditContainer">
+              <a
+                class="nav-link d-flex align-items-center gap-2"
+                href="profile.html"
+              >
+                <i class="fa-solid fa-coins fa-xl credits-icon"></i>
+                <span id="creditsNav"></span>
+                <span>credits</span>
+              </a>
+            </li>
+            <li class="nav-item nav-item_header">
+              <a class="nav-link" href="/index.html">
+                <i class="fa-solid fa-house"></i>
+                <span>Homepage</span>
+              </a>
+            </li>
+            <li class="nav-item nav-item_header">
+              <a class="nav-link" href="/listing-create.html">
+                <i class="fa-solid fa-plus"></i>
+                <span>Create listing</span>
+              </a>
+            </li>
+            <li class="nav-item nav-item_header">
+              <a class="nav-link" href="/my-listings.html">
+                <i class="fa-solid fa-list"></i>
+                <span>My listings</span>
+              </a>
+            </li>
+            <li class="nav-item nav-item_header">
+              <a class="nav-link" href="/watchlist.html">
+                <i class="fa-solid fa-rss"></i>
+                <span>Watchlist</span>
+              </a>
+            </li>
+            <li class="nav-item nav-item_header" id="loginItem">
+              <a class="nav-link" href="/auth-page.html">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Login</span>
+              </a>
+            </li>
+            <li class="nav-item nav-item_header" id="logoutItem">
+              <a class="nav-link" href="">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!-- Searchbar -->
+      <div
+        class="col-4 d-flex align-items-center justify-content-center"
+        id="searchbarContainer"
+      >
+        <button
+          class="d-md-none"
+          id="searchbarButton"
+          type="button"
+          aria-label="Toggle searchbar"
+        >
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <div class="d-none d-md-block shadow-lg" id="searchbarInputContainer">
+          <input
+            class="form-control searchbar-input"
+            id="searchbarInput"
+            type="text"
+            placeholder="Search website"
+          />
+        </div>
+      </div>
+      <!-- Profile -->
+      <div class="col-4" id="avatarContainer">
+        <a
+          class="d-flex align-items-center justify-content-center gap-2"
+          href="profile.html"
+        >
+          <img
+            class="img avatar-nav"
+            src="/images/avatar.jpeg"
+            alt="profile image"
+            id="avatarNav"
+          />
+          <span id="nameNav">Profile</span>
+        </a>
+      </div>
+    </header>
     <main class="main_auth d-flex align-items-center justify-content-center">
       <div class="container">
+        <h1 class="text-center">Create a listing</h1>
+
+        <div class="container text-center d-none" id="loadingContainer">
+          <span id="loadingText"></span>
+          <div id="loadingAnimation"></div>
+        </div>
+        <!-- Status messages -->
+        <div
+          class="container text-center d-flex flex-column align-items-center justify-content-center d-none"
+          id="statusContainer"
+        >
+          <i
+            class="fa-regular fa-circle-check fa-2xl d-none"
+            id="statusIconCheck"
+          ></i>
+          <i
+            class="fa-regular fa-circle-xmark fa-2xl d-none"
+            id="statusIconXmark"
+          ></i>
+          <span class="mb-2" id="statusMessage"></span>
+          <button
+            type="btn"
+            class="btn btn-primary col-6 mb-2"
+            id="btnOption1"
+          ></button>
+          <button
+            type="btn"
+            class="btn btn-secondary col-6 mb-2"
+            id="btnOption2"
+          >
+            Go to homepage
+          </button>
+        </div>
+
         <!-- Create listing form -->
         <div class="container" id="registerContainer">
-          <form class="create-form" id="createForm" method="POST">
+          <form class="listing-form" id="listingForm" method="POST">
             <div class="form-group mb-4">
               <label for="title">Title</label>
-              <i
-                class="fa-solid fa-check iconForm-sucsess d-none"
-                id="titleSucsess"
-              ></i>
-              <i
-                class="fa-solid fa-xmark iconForm-error d-none"
-                id="titleError"
-              ></i>
               <input
                 type="text"
                 class="form-control"
@@ -45,18 +182,10 @@
                 autocomplete="off"
                 required
               />
-              <span id="firstNameErrorMessage" class="error-message"></span>
+              <span id="titleMessage" class="error-message"></span>
             </div>
             <div class="form-group mb-4">
               <label for="description">Description</label>
-              <i
-                class="fa-solid fa-check iconForm-sucsess d-none"
-                id="descriptionSucsess"
-              ></i>
-              <i
-                class="fa-solid fa-xmark iconForm-error d-none"
-                id="descriptionError"
-              ></i>
               <!-- The maxlength doesn't need to be used, but sets a max chars value of the input field. Need at least a way to show the user how many cars left-->
               <textarea
                 class="form-control"
@@ -64,76 +193,37 @@
                 name="description"
                 placeholder="Enter the product description here"
                 autocomplete="off"
-                aria-describedby="descriptionErrorMessage"
                 maxlength="500"
-                required
               ></textarea>
-              <span id="lastNameErrorMessage" class="error-message"></span>
+              <span id="descriptionMessage" class="error-message"></span>
             </div>
             <div class="form-group mb-4">
-              <label for="condition">Condition</label>
-              <i
-                class="fa-solid fa-check iconForm-success d-none"
-                id="conditionSuccess"
-              ></i>
-              <i
-                class="fa-solid fa-xmark iconForm-error d-none"
-                id="conditionError"
-              ></i>
-              <select
-                class="form-control"
-                id="condition"
-                name="condition"
-                required
-              >
-                <option value="" disabled selected>Select Condition</option>
-                <option value="new">New</option>
-                <option value="used">Used</option>
-              </select>
-              <span id="conditionErrorMessage" class="error-message"></span>
-            </div>
-
-            <div class="form-group mb-4">
-              <label for="price">Price</label>
-              <i
-                class="fa-solid fa-check iconForm-sucsess d-none"
-                id="priceSucsess"
-              ></i>
-              <i
-                class="fa-solid fa-xmark iconForm-error d-none"
-                id="priceError"
-              ></i>
+              <label for="tags">Tags</label>
               <input
-                type="number"
+                type="text"
                 class="form-control"
-                id="price"
-                name="price"
+                id="tags"
+                name="tags"
+                placeholder="Enter tags separated by commas"
                 autocomplete="off"
-                placeholder="Enter price"
-                min="8"
-                required
               />
-              <span id="priceErrorMessage" class="error-message"></span>
+              <small id="tagsHelp" class="form-text text-muted"
+                >Add tags to describe your listing, separated by commas (e.g.,
+                vintage, books, collectibles).</small
+              >
+              <span id="tagsMessage" class="error-message"></span>
             </div>
             <div class="form-group mb-4">
               <label for="mainImgUrl">Main image URL</label>
-              <i
-                class="fa-solid fa-check iconForm-sucsess d-none"
-                id="mainImgUrlSucsess"
-              ></i>
-              <i
-                class="fa-solid fa-xmark iconForm-error d-none"
-                id="mainImgUrlError"
-              ></i>
               <input
                 type="text"
                 class="form-control"
                 id="mainImgUrl"
                 name="mainImgUrl"
                 autocomplete="off"
-                required
+                placeholder="Image URL"
               />
-              <span id="mainImgUrlErrorMessage" class="error-message"></span>
+              <span id="mainImgUrlMessage" class="error-message"></span>
             </div>
             <button
               type="button"
@@ -146,69 +236,45 @@
             <div class="mb-4">
               <div class="row">
                 <div class="form-group col-6">
-                  <label for="endingDate">Ending date</label>
-                  <i
-                    class="fa-solid fa-check iconForm-sucsess d-none"
-                    id="endingDateSucsess"
-                  ></i>
-                  <i
-                    class="fa-solid fa-xmark iconForm-error d-none"
-                    id="endingDateError"
-                  ></i>
+                  <label for="endDate">Ending date</label>
                   <input
                     type="date"
                     class="form-control"
-                    id="endingDate"
-                    name="endingDate"
+                    id="endDate"
+                    name="endDate"
                     required
                   />
-                  <span
-                    id="endingDateErrorMessage"
-                    class="error-message"
-                  ></span>
                 </div>
                 <div class="form-group col-6">
-                  <label for="endingTime">Ending time</label>
-                  <i
-                    class="fa-solid fa-check iconForm-sucsess d-none"
-                    id="endingTimeSucsess"
-                  ></i>
-                  <i
-                    class="fa-solid fa-xmark iconForm-error d-none"
-                    id="endingTimeError"
-                  ></i>
+                  <label for="endTime">Ending time</label>
                   <input
                     type="time"
                     class="form-control"
-                    id="endingTime"
-                    name="endingTime"
+                    id="endTime"
+                    name="endTime"
                     required
                   />
-                  <span
-                    id="endingDateErrorMessage"
-                    class="error-message"
-                  ></span>
                 </div>
               </div>
-            </div>
-            <div
-              id="listingErrorMessage"
-              class="error-message mb-2 mt-2 d-none"
-            >
-              The form is not filled out correctly
+              <span id="endTimeAndDateMessage" class="error-message"></span>
             </div>
             <button
               type="submit"
-              id="submitButton"
-              class="btn btn-primary col-12 mb-4"
+              class="btn col-12 submit-btn-custom"
+              id="submitButtonListing"
             >
-              Submit listing
+              <span>Submit listing</span>
             </button>
+            <span id="formMessage" class="error-message d-none"></span>
           </form>
         </div>
       </div>
     </main>
     <footer>@copyright bhlweb 2023</footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/js/header/toggleComponents.js"></script>
+    <script type="module" src="src/js/api/auth/userState.js"></script>
+    <script type="module" src="src/js/forms/listingForm.js"></script>
     <script src="src/js/form-controls/addImagesOnListing.js"></script>
     <script src="src/js/form-controls/dateFormatForm.js"></script>
   </body>

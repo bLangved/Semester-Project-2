@@ -14,14 +14,14 @@ const statusIconXmark = document.querySelector("#statusIconXmark");
  */
 export async function register(userObject) {
   try {
-    const postData = {
+    const data = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userObject),
     };
-    const response = await fetch(urlEndpoint, postData);
+    const response = await fetch(urlEndpoint, data);
 
     if (response.ok) {
       const json = await response.json();

@@ -76,6 +76,5 @@ deleteBtn.addEventListener("click", (e) => {
     deleteAvatar();
   } else {
     avatarOptions.classList.toggle("d-none");
-    console.log("User chose 'No'");
   }
 });
