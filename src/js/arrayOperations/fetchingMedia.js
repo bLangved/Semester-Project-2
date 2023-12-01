@@ -9,3 +9,11 @@ export function firstIndexImage(arrayOfImages) {
   }
   return imageUrl;
 }
+
+export function restIndexedImage(arrayOfImages, index) {
+  if (index > 0 && index < arrayOfImages.length) {
+    return arrayOfImages[index];
+  } else {
+    return "/images/placeholder/placeholder_card.jpg";
+  }
+}

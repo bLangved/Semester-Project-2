@@ -1,5 +1,6 @@
 import { firstIndexImage } from "../arrayOperations/fetchingMedia.js";
 import { timeRemaining } from "../formatting/timeToExpire.js";
+
 export function createCardsProfile(listing) {
   console.log(listing);
   const container = document.querySelector("#listingsContainer");
@@ -12,8 +13,9 @@ export function createCardsProfile(listing) {
     "p-2",
   );
 
-  const card = document.createElement("div");
+  const card = document.createElement("a");
   card.classList.add("card", "card-profile");
+  card.href = `listing.html?id=${listing.id}`;
 
   const cardBody = document.createElement("div");
   cardBody.classList.add(

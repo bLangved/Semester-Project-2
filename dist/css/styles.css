@@ -318,4 +318,10 @@ footer {
   }
 }
 
+/* --- LISTING --- */
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  background-color: black;
+}
+
 /*# sourceMappingURL=styles.css.map */
