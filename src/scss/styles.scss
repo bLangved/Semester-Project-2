@@ -339,7 +339,20 @@ footer {
     width: 6em;
     height: 6em;
   }
-  & .title-profile {
+  & .title-profile,
+  .tagsContainer-profile {
     font-weight: bold;
+  }
+  & .tagsContainer-profile * {
+    font-weight: normal;
+  }
+
+  & .tags-profile {
+    @include apply-theme($light-theme-bg, $light-theme-text);
+
+    // Dark theme styles
+    @media (prefers-color-scheme: dark) {
+      @include apply-theme($dark-theme-bg, $dark-theme-text);
+    }
   }
 }

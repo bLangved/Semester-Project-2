@@ -16,7 +16,13 @@ export function createCardsProfile(listing) {
   card.classList.add("card", "card-profile");
 
   const cardBody = document.createElement("div");
-  cardBody.classList.add("card-body", "d-flex", "card_body-profile");
+  cardBody.classList.add(
+    "card-body",
+    "d-flex",
+    "flex-row",
+    "h-100",
+    "card_body-profile",
+  );
 
   const image = document.createElement("img");
   image.classList.add("card-img");
@@ -24,20 +30,41 @@ export function createCardsProfile(listing) {
   cardBody.append(image);
 
   const textWrapper = document.createElement("div");
-  textWrapper.classList.add("d-flex", "flex-column", "ms-2");
+  textWrapper.classList.add(
+    "d-flex",
+    "flex-column",
+    "flex-grow-1",
+    "ms-2",
+    "card_textWrapper-profile",
+  );
 
   const title = document.createElement("span");
   title.classList.add("card-title", "title-profile");
   title.innerText = listing.title;
   textWrapper.append(title);
 
-  const description = document.createElement("p");
-  description.classList.add("card-text");
-  description.innerText = listing.description;
-  textWrapper.append(description);
+  const tagsContainer = document.createElement("div");
+  tagsContainer.classList.add("card-subtitle", "tagsContainer-profile");
+  tagsContainer.innerText = "Tags:\n";
+  if (listing.tags && Array.isArray(listing.tags)) {
+    listing.tags.forEach((tag) => {
+      const tagsElement = document.createElement("a");
+      tagsElement.classList.add("card-link", "rounded", "p-1", "tags-profile");
+      tagsElement.innerText = tag;
+      tagsElement.href = "#";
+      tagsContainer.append(tagsElement);
+    });
+  }
+  textWrapper.append(tagsContainer);
+
+  //   const bids = document.createElement("span");
+  //   bids.classList.add("card-subtitle");
+  //   bids.innerText = `Bids: ${listing._count.bids}`;
+  //   textWrapper.append(bids);
 
   const endDate = document.createElement("span");
-  endDate.innerText = `Listing ends: ${timeRemaining(listing.endsAt)}`;
+  endDate.classList.add("mt-auto", "align-self-end");
+  endDate.innerText = `Expires in: ${timeRemaining(listing.endsAt)}`;
   textWrapper.append(endDate);
 
   cardBody.append(textWrapper);
