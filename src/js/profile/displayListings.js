@@ -3,7 +3,15 @@ import { createCardsProfile } from "./listingCard.js";
 
 async function displayPersonalListings() {
   try {
-    const listings = await fetchProfileListings();
+    let listings = await fetchProfileListings();
+    console.log(listings);
+
+    listings = listings.sort((a, b) => {
+      const dateA = new Date(a.endsAt).getTime();
+      const dateB = new Date(b.endsAt).getTime();
+      return dateA - dateB;
+    });
+
     listings.forEach((listing) => {
       createCardsProfile(listing);
     });
