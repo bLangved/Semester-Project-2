@@ -5,6 +5,7 @@ html {
 a {
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
 
 img,
@@ -17,14 +18,6 @@ body {
   min-height: 100vh;
   display: grid;
   grid-template-areas: "header" "main" "footer";
-  background-color: rgb(250, 250, 250);
-  color: rgb(10, 10, 10);
-}
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: rgb(10, 10, 10);
-    color: rgb(250, 250, 250);
-  }
 }
 
 header {
@@ -283,6 +276,9 @@ footer {
   position: fixed;
   top: 24em;
 }
+#profileContainer #avatarOptions {
+  z-index: 100;
+}
 @media screen and (min-width: 768px) {
   #profileContainer img {
     height: 20em;
@@ -319,9 +315,27 @@ footer {
 }
 
 /* --- LISTING --- */
+.active-thumbnail {
+  border: 2px solid black;
+}
+
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
   background-color: black;
+}
+
+.sellerContainer-listing {
+  background-color: lightgray;
+}
+.sellerContainer-listing img {
+  width: 4em;
+}
+
+.bidderContainer-listing {
+  background-color: lightgray;
+}
+.bidderContainer-listing img {
+  width: 3em;
 }
 
 /*# sourceMappingURL=styles.css.map */

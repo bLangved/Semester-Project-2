@@ -1,8 +1,7 @@
 import { firstIndexImage } from "../arrayOperations/fetchingMedia.js";
-import { timeRemaining } from "../formatting/timeToExpire.js";
+import { timeRemaining } from "../formatting/dateFormatting.js";
 
 export function createCardsProfile(listing) {
-  console.log(listing);
   const container = document.querySelector("#listingsContainer");
   const cardWrapper = document.createElement("div");
   cardWrapper.classList.add(

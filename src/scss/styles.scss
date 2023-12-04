@@ -7,6 +7,7 @@ html {
 a {
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
 
 img,
@@ -27,12 +28,12 @@ body {
     "header"
     "main"
     "footer";
-  @include apply-theme($light-theme-bg, $light-theme-text);
+  //   @include apply-theme($light-theme-bg, $light-theme-text);
 
-  // Dark theme styles
-  @media (prefers-color-scheme: dark) {
-    @include apply-theme($dark-theme-bg, $dark-theme-text);
-  }
+  //   // Dark theme styles
+  //   @media (prefers-color-scheme: dark) {
+  //     @include apply-theme($dark-theme-bg, $dark-theme-text);
+  //   }
 }
 
 header {
@@ -320,6 +321,10 @@ footer {
     top: 24em;
   }
 
+  #avatarOptions {
+    z-index: 100;
+  }
+
   @media screen and (min-width: 768px) {
     & img {
       height: 20em;
@@ -359,11 +364,33 @@ footer {
 
 /* --- LISTING --- */
 
-// .thumbnails-listing {
-//   width: 7.5em;
-// }
+.images_container-profile {
+  //   max-width: 50em;
+}
+
+.carousel-item {
+  //   max-width: 40em;
+}
+
+.active-thumbnail {
+  border: 2px solid black;
+}
 
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
   background-color: black;
+}
+
+.sellerContainer-listing {
+  background-color: lightgray;
+  & img {
+    width: 4em;
+  }
+}
+
+.bidderContainer-listing {
+  background-color: lightgray;
+  & img {
+    width: 3em;
+  }
 }

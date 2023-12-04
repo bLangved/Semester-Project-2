@@ -22,3 +22,22 @@ export function timeRemaining(date) {
       : `${diffMinutes}min`;
   }
 }
+
+export function timeSinceDate(dateString) {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffInSeconds = Math.floor((now - date) / 1000);
+  const days = Math.floor(diffInSeconds / (3600 * 24));
+  const hours = Math.floor(diffInSeconds / 3600);
+  const minutes = Math.floor((diffInSeconds % 3600) / 60);
+
+  if (days >= 1) {
+    return `${days} days ago`;
+  } else if (hours >= 2) {
+    return `${hours}h ago`;
+  } else if (hours < 2 && hours >= 1) {
+    return `${hours}h ${minutes}min ago`;
+  } else {
+    return `${minutes}min ago`;
+  }
+}

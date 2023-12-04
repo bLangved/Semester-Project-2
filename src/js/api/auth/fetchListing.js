@@ -3,7 +3,7 @@ const queryString = document.location.search;
 const params = new URLSearchParams(queryString);
 const id = params.get("id");
 
-const urlEndpoint = `${apiPath}/auction/listings/${id}`;
+const urlEndpoint = `${apiPath}/auction/listings/${id}?_seller=true&_bids=true`;
 
 export async function fetchListing() {
   const token = localStorage.getItem("token");
