@@ -37,7 +37,9 @@ export function timeSinceDate(dateString) {
     return `${hours}h ago`;
   } else if (hours < 2 && hours >= 1) {
     return `${hours}h ${minutes}min ago`;
-  } else {
+  } else if (hours < 1 && minutes >= 1) {
     return `${minutes}min ago`;
+  } else {
+    return `Just now`;
   }
 }

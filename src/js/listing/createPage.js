@@ -1,12 +1,11 @@
 import { timeSinceDate } from "../formatting/dateFormatting.js";
 import { formatFullName } from "../formatting/profileObject.js";
+import { submitBid } from "./addBid.js";
 import { highestBid } from "./highestBid.js";
 import {
   setActiveThumbnailOnLoad,
   setActiveCarouselItem,
 } from "./imageActiveState.js";
-
-// import { timeRemaining } from "../formatting/timeToExpire.js";
 
 export function createHTML(listing) {
   console.log(listing);
@@ -120,25 +119,22 @@ export function createHTML(listing) {
   nextButton.append(nextIcon);
   nextButton.append(nextText);
 
-  // Event listener for previous button
   prevButton.addEventListener("click", () => {
     let activeIndex = findActiveCarouselIndex(carouselInner) - 1;
     if (activeIndex < 0) {
-      activeIndex = carouselInner.children.length - 1; // Loop back to the last item if at the beginning
+      activeIndex = carouselInner.children.length - 1;
     }
     setActiveCarouselItem(activeIndex, carouselInner, thumbnailsRow);
   });
 
-  // Event listener for next button
   nextButton.addEventListener("click", () => {
     let activeIndex = findActiveCarouselIndex(carouselInner) + 1;
     if (activeIndex >= carouselInner.children.length) {
-      activeIndex = 0; // Loop back to the first item if at the end
+      activeIndex = 0;
     }
     setActiveCarouselItem(activeIndex, carouselInner, thumbnailsRow);
   });
 
-  // Helper function to find the index of the active carousel item
   function findActiveCarouselIndex(carouselInner) {
     return Array.from(carouselInner.children).findIndex((item) =>
       item.classList.contains("active"),
@@ -150,6 +146,7 @@ export function createHTML(listing) {
 
   container.append(imagesContainer);
 
+  // INFO-CONTAINER FOR TEXT AND BIDS
   const infoContainer = document.createElement("div");
   infoContainer.classList.add("container");
 
@@ -157,6 +154,20 @@ export function createHTML(listing) {
   listingTitle.classList.add("header-4", "mt-3", "mb-3");
   listingTitle.innerText = listing.title;
   infoContainer.append(listingTitle);
+
+  const tagsContainer = document.createElement("div");
+  tagsContainer.classList.add("d-flex", "align-items-center", "mb-3");
+  const tagsTitle = document.createElement("span");
+  tagsTitle.classList.add("fw-bold");
+  tagsTitle.innerText = "Tags:";
+  tagsContainer.append(tagsTitle);
+  listing.tags.forEach((tag) => {
+    const tags = document.createElement("span");
+    tags.classList.add("p-1");
+    tags.innerText = tag;
+    tagsContainer.append(tags);
+  });
+  infoContainer.append(tagsContainer);
 
   const sellerContainer = document.createElement("a");
   sellerContainer.classList.add(
@@ -171,13 +182,13 @@ export function createHTML(listing) {
   const sellerAvatar = document.createElement("img");
   sellerAvatar.classList.add("img-thumbnail", "rounded-circle");
   sellerAvatar.src = listing.seller.avatar || "/images/avatar.jpeg";
-  const sellerPreText = document.createElement("span");
-  sellerPreText.classList.add("ms-2");
-  sellerPreText.innerText = "Seller:";
+  const sellerInfoContainer = document.createElement("div");
+  sellerInfoContainer.classList.add("d-flex", "flex-column", "ms-2");
   const sellerName = document.createElement("span");
-  sellerName.classList.add("ms-1");
+  sellerName.classList.add("fs-4");
   sellerName.innerText = formatFullName(listing.seller.name);
-  sellerContainer.append(sellerAvatar, sellerPreText, sellerName);
+  sellerInfoContainer.append(sellerName);
+  sellerContainer.append(sellerAvatar, sellerInfoContainer);
   infoContainer.append(sellerContainer);
 
   const bidContainer = document.createElement("div");
@@ -238,19 +249,31 @@ export function createHTML(listing) {
   placeBidInput.required = "true";
   const placeBidButton = document.createElement("button");
   placeBidButton.innerText = "Submit bid";
-  placeBidButton.classList.add("btn", "btn-primary", "mt-3", "mb-3", "col-12");
+  placeBidButton.classList.add("btn", "btn-primary", "mt-3", "col-12");
   placeBidButton.type = "submit";
   placeBidContainer.append(placeBidInput, placeBidButton);
+
+  placeBidButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    submitBid(Number(placeBidInput.value));
+  });
+
   biddingContainer.append(placeBidContainer);
   infoContainer.append(biddingContainer);
 
+  const watchlistButton = document.createElement("button");
+  watchlistButton.type = "button";
+  watchlistButton.innerText = "Add to watchlist";
+  watchlistButton.classList.add("btn", "btn-info", "col-12");
+  infoContainer.append(watchlistButton);
+
   const descriptionContainer = document.createElement("div");
+  descriptionContainer.classList.add("mt-5", "mb-5");
   const descriptionHeader = document.createElement("h2");
   descriptionHeader.innerText = "Description:";
   const description = document.createElement("p");
   description.classList.add("fst-italic");
   description.innerText = listing.description;
-
   descriptionContainer.append(descriptionHeader, description);
   infoContainer.append(descriptionContainer);
 
