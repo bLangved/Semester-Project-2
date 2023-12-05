@@ -394,3 +394,12 @@ footer {
     width: 3em;
   }
 }
+
+/* --- INDEX --- */
+
+.card-index {
+  & img {
+    height: 10em;
+    object-fit: cover;
+  }
+}

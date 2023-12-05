@@ -1,23 +1,28 @@
-// import { apiPath } from "../baseUrl.js";
-// const urlEndpoint = `${apiPath}/auction/listings/${id}?_seller=true&_bids=true`;
+import { apiPath } from "../baseUrl.js";
+const urlEndpoint = `${apiPath}/auction/listings/`;
 
-// export async function fetchNewest() {
-//   const token = localStorage.getItem("token");
-//   try {
-//     const response = await fetch(urlEndpoint, {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//         authorization: `Bearer ${token}`,
-//       },
-//     });
-//     if (response.ok) {
-//       return await response.json();
-//     } else {
-//       throw new Error(`Error: ${response.status} - ${response.statusText}`);
-//     }
-//   } catch (error) {
-//     console.error("Fetch error:", error.message);
-//     throw error;
-//   }
-// }
+export async function fetchNewestListings() {
+  const queryParams = new URLSearchParams({
+    limit: "6",
+    sort: "created",
+    sortOrder: "desc",
+    _bids: "true",
+  });
+  try {
+    const response = await fetch(`${urlEndpoint}?${queryParams.toString()}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      const listings = await response.json();
+      return listings;
+    } else {
+      throw new Error(`Error: ${response.status} - ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error("Fetch error:", error.message);
+    throw error;
+  }
+}
