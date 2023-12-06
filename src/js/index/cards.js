@@ -1,42 +1,38 @@
-import { highestBid } from "../listing/highestBid.js";
-
-const containerRow = document.querySelector("#listingRow");
-
-export function createCards(object) {
+import { timeRemaining } from "../formatting/dateFormatting.js";
+export function createCards(object, container) {
   console.log(object);
+  const cardWrapper = document.createElement("div");
+  cardWrapper.classList.add("col-6", "col-md-4", "col-lg-3", "p-1");
   const card = document.createElement("a");
-  card.classList.add(
-    "card",
-    "col-6",
-    "col-md-4",
-    "col-lg-3",
-    "p-0",
-    "card-index",
-  );
+  card.classList.add("card", "p-0", "card-index");
   card.href = `listing.html?id=${object.id}`;
 
   const img = document.createElement("img");
   img.classList.add("card-img-top");
-  img.src = object.media;
+  if (object.media && object.media.length > 0) {
+    img.src = object.media[0];
+  } else {
+    img.src = "images/placeholder/no_image_placeholder.jpeg";
+  }
   card.append(img);
 
   const cardBody = document.createElement("div");
-  cardBody.classList.add("card-body");
+  cardBody.classList.add("card-body", "d-flex", "flex-column");
   card.append(cardBody);
 
   const title = document.createElement("span");
-  title.innerText = object.title;
+  if (object.title.length > 25) {
+    title.innerText = object.title.substring(0, 25) + "...";
+  } else {
+    title.innerText = object.title;
+  }
   cardBody.append(title);
 
-  const creditContainer = document.createElement("div");
-  creditContainer.classList.add("d-flex", "align-items-center", "p-2");
-  const creditIcon = document.createElement("i");
-  creditIcon.classList.add("fa-solid", "fa-coins", "fa-xl", "credits-icon");
-  const creditAmount = document.createElement("span");
-  creditAmount.classList.add("ms-2");
-  creditAmount.innerText = `Highest bid: ${highestBid(object.bids)}`;
-  creditContainer.append(creditIcon, creditAmount);
-  card.append(creditContainer);
+  const endDate = document.createElement("span");
+  endDate.classList.add("mt-auto");
+  endDate.innerText = `Expires in: ${timeRemaining(object.endsAt)}`;
+  cardBody.append(endDate);
 
-  containerRow.append(card);
+  cardWrapper.append(card);
+  container.append(cardWrapper);
 }

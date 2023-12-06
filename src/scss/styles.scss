@@ -5,7 +5,7 @@ html {
 }
 
 a {
-  color: inherit;
+  color: initial;
   text-decoration: none;
   cursor: pointer;
 }
@@ -336,32 +336,6 @@ footer {
   }
 }
 
-.card-profile {
-  & .card_body-profile {
-    padding: 0.75em;
-  }
-  & img {
-    width: 6em;
-    height: 6em;
-  }
-  & .title-profile,
-  .tagsContainer-profile {
-    font-weight: bold;
-  }
-  & .tagsContainer-profile * {
-    font-weight: normal;
-  }
-
-  & .tags-profile {
-    @include apply-theme($light-theme-bg, $light-theme-text);
-
-    // Dark theme styles
-    @media (prefers-color-scheme: dark) {
-      @include apply-theme($dark-theme-bg, $dark-theme-text);
-    }
-  }
-}
-
 /* --- LISTING --- */
 
 .images_container-profile {
@@ -373,12 +347,13 @@ footer {
 }
 
 .active-thumbnail {
+  //   max-height: 10em;
   border: 2px solid black;
 }
 
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
-  background-color: black;
+  padding: 1.5em;
 }
 
 .sellerContainer-listing {
@@ -397,9 +372,33 @@ footer {
 
 /* --- INDEX --- */
 
-.card-index {
+.listing-container_index {
+  & > div:first-child {
+    background-color: lightgray;
+  }
+}
+
+/* --- CARDS --- */
+
+.card-index,
+.card-profile {
+  height: 16em;
   & img {
-    height: 10em;
+    min-height: 9em;
+    height: 9em;
     object-fit: cover;
   }
+
+  &:hover {
+    transition: box-shadow 0.1s ease-in-out;
+    box-shadow: 2px 2px 5px gray;
+  }
+}
+
+.card-index {
+  height: 16em;
+}
+
+.card-profile {
+  height: 16em;
 }

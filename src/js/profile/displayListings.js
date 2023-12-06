@@ -2,6 +2,7 @@ import { fetchProfileListings } from "../api/auth/profileListings.js";
 import { createCardsProfile } from "./listingCard.js";
 
 async function displayPersonalListings() {
+  const container = document.querySelector("#listingsContainer");
   try {
     let listings = await fetchProfileListings();
     console.log(listings);
@@ -13,7 +14,7 @@ async function displayPersonalListings() {
     });
 
     listings.forEach((listing) => {
-      createCardsProfile(listing);
+      createCardsProfile(listing, container);
     });
   } catch (error) {
     console.error("Failed to load listings:", error);

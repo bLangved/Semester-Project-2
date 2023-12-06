@@ -3,7 +3,7 @@ html {
 }
 
 a {
-  color: inherit;
+  color: initial;
   text-decoration: none;
   cursor: pointer;
 }
@@ -289,31 +289,6 @@ footer {
   }
 }
 
-.card-profile .card_body-profile {
-  padding: 0.75em;
-}
-.card-profile img {
-  width: 6em;
-  height: 6em;
-}
-.card-profile .title-profile,
-.card-profile .tagsContainer-profile {
-  font-weight: bold;
-}
-.card-profile .tagsContainer-profile * {
-  font-weight: normal;
-}
-.card-profile .tags-profile {
-  background-color: rgb(250, 250, 250);
-  color: rgb(10, 10, 10);
-}
-@media (prefers-color-scheme: dark) {
-  .card-profile .tags-profile {
-    background-color: rgb(10, 10, 10);
-    color: rgb(250, 250, 250);
-  }
-}
-
 /* --- LISTING --- */
 .active-thumbnail {
   border: 2px solid black;
@@ -321,7 +296,7 @@ footer {
 
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
-  background-color: black;
+  padding: 1.5em;
 }
 
 .sellerContainer-listing {
@@ -339,9 +314,33 @@ footer {
 }
 
 /* --- INDEX --- */
-.card-index img {
-  height: 10em;
+.listing-container_index > div:first-child {
+  background-color: lightgray;
+}
+
+/* --- CARDS --- */
+.card-index,
+.card-profile {
+  height: 16em;
+}
+.card-index img,
+.card-profile img {
+  min-height: 9em;
+  height: 9em;
   object-fit: cover;
+}
+.card-index:hover,
+.card-profile:hover {
+  transition: box-shadow 0.1s ease-in-out;
+  box-shadow: 2px 2px 5px gray;
+}
+
+.card-index {
+  height: 16em;
+}
+
+.card-profile {
+  height: 16em;
 }
 
 /*# sourceMappingURL=styles.css.map */

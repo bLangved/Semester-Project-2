@@ -1,75 +1,39 @@
-import { firstIndexImage } from "../arrayOperations/fetchingMedia.js";
 import { timeRemaining } from "../formatting/dateFormatting.js";
 
-export function createCardsProfile(listing) {
-  const container = document.querySelector("#listingsContainer");
+export function createCardsProfile(object, container) {
+  // console.log(object);
   const cardWrapper = document.createElement("div");
-  cardWrapper.classList.add(
-    "col-12",
-    "col-md-6",
-    "col-lg-4",
-    "col-xl-3",
-    "p-2",
-  );
-
+  cardWrapper.classList.add("col-6", "col-md-4", "col-lg-3", "p-1");
   const card = document.createElement("a");
-  card.classList.add("card", "card-profile");
-  card.href = `listing.html?id=${listing.id}`;
+  card.classList.add("card", "p-0", "card-profile");
+  card.href = `listing.html?id=${object.id}`;
+
+  const img = document.createElement("img");
+  img.classList.add("card-img-top");
+  if (object.media && object.media.length > 0) {
+    img.src = object.media[0];
+  } else {
+    img.src = "images/placeholder/no_image_placeholder.jpeg";
+  }
+  card.append(img);
 
   const cardBody = document.createElement("div");
-  cardBody.classList.add(
-    "card-body",
-    "d-flex",
-    "flex-row",
-    "h-100",
-    "card_body-profile",
-  );
-
-  const image = document.createElement("img");
-  image.classList.add("card-img");
-  image.src = firstIndexImage(listing.media);
-  cardBody.append(image);
-
-  const textWrapper = document.createElement("div");
-  textWrapper.classList.add(
-    "d-flex",
-    "flex-column",
-    "flex-grow-1",
-    "ms-2",
-    "card_textWrapper-profile",
-  );
+  cardBody.classList.add("card-body", "d-flex", "flex-column");
+  card.append(cardBody);
 
   const title = document.createElement("span");
-  title.classList.add("card-title", "title-profile");
-  title.innerText = listing.title;
-  textWrapper.append(title);
-
-  const tagsContainer = document.createElement("div");
-  tagsContainer.classList.add("card-subtitle", "tagsContainer-profile");
-  tagsContainer.innerText = "Tags:\n";
-  if (listing.tags && Array.isArray(listing.tags)) {
-    listing.tags.forEach((tag) => {
-      const tagsElement = document.createElement("a");
-      tagsElement.classList.add("card-link", "rounded", "p-1", "tags-profile");
-      tagsElement.innerText = tag;
-      tagsElement.href = "#";
-      tagsContainer.append(tagsElement);
-    });
+  if (object.title.length > 25) {
+    title.innerText = object.title.substring(0, 25) + "...";
+  } else {
+    title.innerText = object.title;
   }
-  textWrapper.append(tagsContainer);
-
-  //   const bids = document.createElement("span");
-  //   bids.classList.add("card-subtitle");
-  //   bids.innerText = `Bids: ${listing._count.bids}`;
-  //   textWrapper.append(bids);
+  cardBody.append(title);
 
   const endDate = document.createElement("span");
-  endDate.classList.add("mt-auto", "align-self-end");
-  endDate.innerText = `Expires in: ${timeRemaining(listing.endsAt)}`;
-  textWrapper.append(endDate);
+  endDate.classList.add("mt-auto");
+  endDate.innerText = `Expires in: ${timeRemaining(object.endsAt)}`;
+  cardBody.append(endDate);
 
-  cardBody.append(textWrapper);
-  card.append(cardBody);
   cardWrapper.append(card);
   container.append(cardWrapper);
 }

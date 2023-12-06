@@ -1,3 +1,4 @@
+import { deleteListing } from "../api/auth/deleteListing.js";
 import { timeSinceDate } from "../formatting/dateFormatting.js";
 import { formatFullName } from "../formatting/profileObject.js";
 import { submitBid } from "./addBid.js";
@@ -63,7 +64,7 @@ export function createHTML(listing) {
   if (
     listing.media &&
     Array.isArray(listing.media) &&
-    listing.media.length > 0
+    listing.media.length > 1
   ) {
     listing.media.forEach((imageSrc, index) => {
       const col = document.createElement("div");
@@ -276,6 +277,39 @@ export function createHTML(listing) {
   description.innerText = listing.description;
   descriptionContainer.append(descriptionHeader, description);
   infoContainer.append(descriptionContainer);
+
+  const profileObject = JSON.parse(localStorage.getItem("profile"));
+  const profileName = profileObject.name;
+  if (listing.seller.name === profileName) {
+    const editListingContainer = document.createElement("div");
+
+    const editButton = document.createElement("button");
+    editButton.classList.add("btn", "btn-warning", "col-12", "mb-3");
+    editButton.type = "button";
+    editButton.innerText = "Edit listing";
+    editButton.addEventListener("click", () => {
+      // const params = new URLSearchParams(window.location.search);
+      // const id = params.get("id");
+      // updateListingForm(id);
+      window.location.href = "listing-edit.html";
+    });
+
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("btn", "btn-danger", "col-12", "mb-3");
+    deleteButton.type = "button";
+    deleteButton.innerText = "Delete listing";
+    deleteButton.addEventListener("click", () => {
+      if (confirm("Are you sure you want to delete the listing?")) {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+        deleteListing(id);
+      }
+    });
+
+    editListingContainer.append(editButton, deleteButton);
+
+    infoContainer.append(editListingContainer);
+  }
 
   container.append(infoContainer);
 

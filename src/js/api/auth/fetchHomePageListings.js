@@ -1,13 +1,7 @@
 import { apiPath } from "../baseUrl.js";
 const urlEndpoint = `${apiPath}/auction/listings/`;
 
-export async function fetchNewestListings() {
-  const queryParams = new URLSearchParams({
-    limit: "6",
-    sort: "created",
-    sortOrder: "desc",
-    _bids: "true",
-  });
+async function fetchListings(queryParams) {
   try {
     const response = await fetch(`${urlEndpoint}?${queryParams.toString()}`, {
       method: "GET",
@@ -25,4 +19,30 @@ export async function fetchNewestListings() {
     console.error("Fetch error:", error.message);
     throw error;
   }
+}
+
+function getNewestListingsParams() {
+  return new URLSearchParams({
+    limit: "16",
+    sort: "created",
+    sortOrder: "desc",
+    _bids: "true",
+  });
+}
+
+function getTag1ListingsParams() {
+  return new URLSearchParams({
+    limit: "8",
+    sort: "created",
+    sortOrder: "desc",
+    _tag: "vinyl",
+  });
+}
+
+export async function fetchNewestListings() {
+  return fetchListings(getNewestListingsParams());
+}
+
+export async function fetchTag1Listings() {
+  return fetchListings(getTag1ListingsParams());
 }
