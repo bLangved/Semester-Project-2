@@ -1,5 +1,5 @@
 import loadingAnimation from "../animations/loadingAnimation.js";
-import { listing } from "../api/auth/createListing.js";
+import { editListing } from "../api/auth/editListing.js";
 import { checkLength, isValidUrl } from "../validation/inputValidation.js";
 
 const form = document.querySelector("#listingForm");
@@ -9,28 +9,43 @@ const description = document.querySelector("#description");
 const tags = document.querySelector("#tags");
 const mainImageUrl = document.querySelector("#mainImgUrl");
 // const addImgContainer = document.querySelector("#additionalImagesContainer");
-const endDate = document.querySelector("#endDate");
-const endTime = document.querySelector("#endTime");
 
 const titleMessage = document.querySelector("#titleMessage");
 const mainImgUrlMessage = document.querySelector("#mainImgUrlMessage");
 // const addImgContainerMessage = document.querySelector(
 //   "#addImgContainerMessage"
 // );
-const endTimeAndDateMessage = document.querySelector("#endTimeAndDateMessage");
 const formMessage = document.querySelector("#formMessage");
 
 // const AddImgBtn = document.querySelector("#additionalImagesButton");
 const submitButton = document.querySelector("#submitButtonListing");
 
-const requiredFields = [title, endDate, endTime];
+document.addEventListener("DOMContentLoaded", function () {
+  const listing = JSON.parse(localStorage.getItem("currentListing"));
+  if (listing) {
+    updateListingForm(listing);
+  }
+});
+
+let listingId = null;
+
+function updateListingForm(listing) {
+  console.log(listing);
+
+  listingId = listing.id;
+  title.value = listing.title;
+  description.value = listing.description;
+  tags.value = listing.tags;
+  mainImageUrl.value = listing.media[0];
+}
+
+const requiredFields = [title];
 
 /**
  * Checks input fields if they matches patterns for validation
  * @returns {number}
  */
 function validateForm() {
-  const combinedDateTime = new Date(endDate.value + "T" + endTime.value);
   let validationPassed = 0;
 
   if (checkLength(title.value, 1) === true) {
@@ -47,12 +62,6 @@ function validateForm() {
     }
   } else {
     mainImgUrlMessage.innerText = "";
-  }
-  if (combinedDateTime >= new Date()) {
-    validationPassed++;
-    endTimeAndDateMessage.innerText = "";
-  } else {
-    endTimeAndDateMessage.innerText = "End date and time must be in the future";
   }
   return validationPassed;
 }
@@ -102,19 +111,16 @@ submitButton.addEventListener("click", async (e) => {
     }
     mediaArray = mediaArray.concat(additionalImgUrlsArray);
 
-    const combinedDateTime = new Date(endDate.value + "T" + endTime.value);
-    const endsAtUTC = combinedDateTime.toISOString();
-
     const listingObject = {
       title: title.value,
       description: description.value,
-      endsAt: endsAtUTC,
       tags: tagsArray,
       ...(mediaArray.length > 0 && { media: mediaArray }),
+      id: listingId,
     };
     loadingAnimation.classList.remove("d-none");
     form.classList.add("d-none");
-    await listing(listingObject);
+    await editListing(listingObject);
   } else {
     formMessage.classList.remove("d-none");
     formMessage.innerText = "Fill inn all fields that are required";
