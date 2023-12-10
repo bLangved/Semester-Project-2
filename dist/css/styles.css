@@ -1,7 +1,3 @@
-html {
-  color-scheme: light dark;
-}
-
 a {
   color: initial;
   text-decoration: none;
@@ -18,13 +14,14 @@ body {
   min-height: 100vh;
   display: grid;
   grid-template-areas: "header" "main" "footer";
+  background-color: rgb(250, 250, 250);
 }
 
 header {
   position: fixed;
   top: 0;
   height: 5em;
-  background-color: rgb(130, 130, 130);
+  background-color: rgb(229, 202, 175);
   z-index: 999;
 }
 
@@ -53,20 +50,20 @@ header {
   transition: all 0.3s ease-in-out;
 }
 .nav-toggler .hamburger-icon::before {
-  top: -10px;
+  top: -12px;
 }
 .nav-toggler .hamburger-icon::after {
-  top: 10px;
+  top: 12px;
 }
 
 .nav-toggler .hamburger-icon.active {
   background-color: transparent;
 }
 .nav-toggler .hamburger-icon.active::before {
-  transform: translateY(10px) rotate(45deg);
+  transform: translateY(12px) rotate(45deg);
 }
 .nav-toggler .hamburger-icon.active::after {
-  transform: translateY(-10px) rotate(-45deg);
+  transform: translateY(-12px) rotate(-45deg);
 }
 
 .nav-content {
@@ -78,6 +75,14 @@ header {
   width: 50%;
   background-color: rgb(245, 245, 245);
 }
+.nav-content a {
+  color: rgb(15, 15, 15);
+}
+.nav-content a:hover {
+  color: rgb(5, 5, 5);
+  padding-left: 0.5em;
+  transition: padding-left 0.2s ease-in-out;
+}
 
 .credits-icon {
   color: #d5ce0c;
@@ -85,17 +90,17 @@ header {
 
 #searchbarContainer #searchbarButton {
   border: none;
-  height: 3em;
-  width: 3em;
+  height: 2.75em;
+  width: 2.75em;
   border-radius: 50%;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(250, 250, 250);
 }
 #searchbarContainer #searchbarButton:hover {
   background-color: rgb(230, 230, 230);
   transition: background-color 0.1s ease-in-out;
 }
 #searchbarContainer i {
-  color: rgb(10, 10, 10);
+  color: rgb(5, 5, 5);
 }
 
 @media only screen and (max-width: 767px) {
@@ -114,11 +119,8 @@ header {
 }
 
 #avatarContainer img {
-  height: 3em;
+  height: 2.75em;
   border-radius: 50%;
-}
-#avatarContainer span {
-  font-size: 1.25rem;
 }
 
 main {

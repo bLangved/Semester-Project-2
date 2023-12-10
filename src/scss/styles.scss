@@ -1,9 +1,5 @@
 @import "variables";
 
-html {
-  color-scheme: light dark;
-}
-
 a {
   color: initial;
   text-decoration: none;
@@ -16,9 +12,8 @@ video {
   cursor: pointer;
 }
 
-@mixin apply-theme($bg, $text) {
-  background-color: $bg;
-  color: $text;
+@mixin apply-theme($color) {
+  color: $color;
 }
 
 body {
@@ -28,19 +23,14 @@ body {
     "header"
     "main"
     "footer";
-  //   @include apply-theme($light-theme-bg, $light-theme-text);
-
-  //   // Dark theme styles
-  //   @media (prefers-color-scheme: dark) {
-  //     @include apply-theme($dark-theme-bg, $dark-theme-text);
-  //   }
+  background-color: $color-white;
 }
 
 header {
   position: fixed;
   top: 0;
   height: 5em;
-  background-color: rgb(130, 130, 130);
+  background-color: $color-desert-sand;
   z-index: 999;
 }
 
@@ -71,10 +61,10 @@ header {
     }
 
     &::before {
-      top: -10px;
+      top: -12px;
     }
     &::after {
-      top: 10px;
+      top: 12px;
     }
   }
 }
@@ -82,10 +72,10 @@ header {
   background-color: transparent;
 
   &::before {
-    transform: translateY(10px) rotate(45deg);
+    transform: translateY(12px) rotate(45deg);
   }
   &::after {
-    transform: translateY(-10px) rotate(-45deg);
+    transform: translateY(-12px) rotate(-45deg);
   }
 }
 
@@ -96,7 +86,17 @@ header {
   padding: 1.5em;
   min-height: 100vh;
   width: 50%;
-  background-color: $color-light;
+  background-color: $color-whiteish;
+
+  a {
+    color: $color-blackish;
+
+    &:hover {
+      color: $color-black;
+      padding-left: 0.5em;
+      transition: padding-left 0.2s ease-in-out;
+    }
+  }
 }
 
 .credits-icon {
@@ -106,10 +106,10 @@ header {
 #searchbarContainer {
   #searchbarButton {
     border: none;
-    height: 3em;
-    width: 3em;
+    height: 2.75em;
+    width: 2.75em;
     border-radius: 50%;
-    background-color: $color-light;
+    background-color: $color-white;
 
     &:hover {
       background-color: rgb(230, 230, 230);
@@ -117,7 +117,7 @@ header {
     }
   }
   & i {
-    color: $color-dark;
+    color: $color-black;
   }
 }
 
@@ -139,11 +139,8 @@ header {
 
 #avatarContainer {
   & img {
-    height: 3em;
+    height: 2.75em;
     border-radius: 50%;
-  }
-  & span {
-    font-size: 1.25rem;
   }
 }
 
