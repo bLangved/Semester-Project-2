@@ -75,18 +75,12 @@ requiredFields.forEach((field) => {
   field.addEventListener("input", () => {
     field.targeted = true;
     const isValidationPassed = validateForm();
-    switch (isValidationPassed) {
-      case 1:
-        submitButton.style.color = "black";
-        submitButton.style.setProperty("--progress-width", "50%");
-        break;
-      case 2:
-        submitButton.style.setProperty("--progress-width", "100%");
-        submitButton.style.color = "white";
-        formMessage.classList.add("d-none");
-        break;
-      default:
-        submitButton.style.setProperty("--progress-width", "0%");
+    if (isValidationPassed) {
+      submitButton.style.setProperty("--progress-width", "100%");
+      submitButton.style.color = "white";
+      formMessage.classList.add("d-none");
+    } else {
+      submitButton.style.setProperty("--progress-width", "0%");
     }
   });
 });
@@ -95,7 +89,7 @@ requiredFields.forEach((field) => {
 submitButton.addEventListener("click", async (e) => {
   e.preventDefault();
   const isValidationPassed = validateForm();
-  if (isValidationPassed === 2) {
+  if (isValidationPassed) {
     const tagsArray = tags.value.split(",").map((tag) => tag.trim());
 
     const additionalImageInputs = document.querySelectorAll(

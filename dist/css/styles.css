@@ -259,7 +259,7 @@ footer {
   color: green;
 }
 
-/* --- Profile page --- */
+/* --- PROFILE --- */
 #profileContainer img {
   height: 15em;
   width: 15em;
@@ -286,6 +286,7 @@ footer {
 @media screen and (min-width: 768px) {
   #profileContainer img {
     height: 20em;
+    width: 20em;
   }
   #profileContainer .avatar-options-container {
     position: fixed;
@@ -294,6 +295,29 @@ footer {
 }
 
 /* --- LISTING --- */
+.img-container_listing .active img {
+  width: 100%;
+  max-height: 35em;
+  object-fit: cover;
+}
+@media (min-width: 768px) {
+  .img-container_listing .active img {
+    max-height: initial;
+    height: 35em;
+    border-radius: 0.5em;
+  }
+}
+@media (min-width: 992px) {
+  .img-container_listing .active img {
+    height: 35em;
+    width: 70em;
+  }
+}
+.img-container_listing .thumbnails_listing {
+  object-fit: cover;
+  height: 8em;
+}
+
 .active-thumbnail {
   border: 2px solid black;
 }

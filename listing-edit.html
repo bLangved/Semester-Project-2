@@ -165,7 +165,7 @@
 
         <!-- Create listing form -->
         <div class="container" id="registerContainer">
-          <form class="listing-form" id="listingForm" method="POST">
+          <form class="listing-form" id="listingForm">
             <div class="form-group mb-4">
               <label for="title">Title</label>
               <input
@@ -228,31 +228,6 @@
               Add additional images
             </button>
             <div class="mb-2" id="additionalImagesContainer"></div>
-            <div class="mb-4">
-              <div class="row">
-                <div class="form-group col-6">
-                  <label for="endDate">Ending date</label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="endDate"
-                    name="endDate"
-                    required
-                  />
-                </div>
-                <div class="form-group col-6">
-                  <label for="endTime">Ending time</label>
-                  <input
-                    type="time"
-                    class="form-control"
-                    id="endTime"
-                    name="endTime"
-                    required
-                  />
-                </div>
-              </div>
-              <span id="endTimeAndDateMessage" class="error-message"></span>
-            </div>
             <button
               type="submit"
               class="btn col-12 submit-btn-custom"
@@ -269,9 +244,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="src/js/header/toggleComponents.js"></script>
     <script type="module" src="src/js/api/auth/userState.js"></script>
-    <script type="module" src="src/js/api/auth/editListing.js"></script>
-    <script type="module" src="src/js/forms/updateListingForm.js"></script>
+    <script type="module" src="src/js/forms/editListingForm.js"></script>
     <script src="src/js/form-controls/addImagesOnListing.js"></script>
-    <script src="src/js/form-controls/dateFormatForm.js"></script>
   </body>
 </html>

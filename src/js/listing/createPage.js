@@ -1,5 +1,5 @@
 import { deleteListing } from "../api/auth/deleteListing.js";
-import { timeSinceDate } from "../formatting/dateFormatting.js";
+import { timeRemaining, timeSinceDate } from "../formatting/dateFormatting.js";
 import { formatFullName } from "../formatting/profileObject.js";
 import { submitBid } from "./addBid.js";
 import { highestBid } from "./highestBid.js";
@@ -10,18 +10,20 @@ import {
 
 export function createHTML(listing) {
   console.log(listing);
-  const container = document.querySelector("#listingContainer");
-  function updateContainerClass() {
-    if (window.innerWidth >= 768) {
-      container.classList.add("container");
-    } else {
-      container.classList.remove("container");
-    }
-  }
+  const container = document.querySelector("#listingContainerRow");
+  container.classList.add(
+    "container-md",
+    "p-0",
+    "mt-md-4",
+    "d-flex",
+    "flex-column",
+    "flex-lg-row",
+    "gap-lg-3",
+  );
 
   // IMAGES
   const imagesContainer = document.createElement("div");
-  imagesContainer.classList.add("images_container-profile");
+  imagesContainer.classList.add("img-container_listing");
 
   const carouselContainer = document.createElement("div");
   carouselContainer.classList.add("carousel", "slide");
@@ -68,10 +70,10 @@ export function createHTML(listing) {
   ) {
     listing.media.forEach((imageSrc, index) => {
       const col = document.createElement("div");
-      col.classList.add("col");
+      col.classList.add("col", "d-flex", "justify-content-center");
 
       const thumbnail = document.createElement("img");
-      thumbnail.classList.add("img-thumbnail");
+      thumbnail.classList.add("img-thumbnail", "thumbnails_listing");
       thumbnail.src = imageSrc;
 
       thumbnail.addEventListener("click", () => {
@@ -278,6 +280,28 @@ export function createHTML(listing) {
   descriptionContainer.append(descriptionHeader, description);
   infoContainer.append(descriptionContainer);
 
+  const additionalContainer = document.createElement("div");
+  additionalContainer.classList.add("mb-5");
+  const auctionIdContainer = document.createElement("div");
+  const AuctionIdPreText = document.createElement("span");
+  AuctionIdPreText.classList.add("fw-bold");
+  AuctionIdPreText.innerText = "Auction id: ";
+  const auctionId = document.createElement("span");
+  auctionId.innerText = listing.id;
+  auctionIdContainer.append(AuctionIdPreText, auctionId);
+
+  const expiresContainer = document.createElement("div");
+  const expiresPreText = document.createElement("span");
+  expiresPreText.classList.add("fw-bold");
+  expiresPreText.innerText = "Expires in: ";
+  const expires = document.createElement("span");
+  expires.innerText = timeRemaining(listing.endsAt);
+  expiresContainer.append(expiresPreText, expires);
+
+  additionalContainer.append(auctionIdContainer, expiresContainer);
+
+  infoContainer.append(additionalContainer);
+
   const profileObject = JSON.parse(localStorage.getItem("profile"));
   const profileName = profileObject.name;
   if (listing.seller.name === profileName) {
@@ -288,9 +312,8 @@ export function createHTML(listing) {
     editButton.type = "button";
     editButton.innerText = "Edit listing";
     editButton.addEventListener("click", () => {
-      // const params = new URLSearchParams(window.location.search);
-      // const id = params.get("id");
-      // updateListingForm(id);
+      const currentListing = JSON.stringify(listing);
+      localStorage.setItem("currentListing", currentListing);
       window.location.href = "listing-edit.html";
     });
 
@@ -313,7 +336,5 @@ export function createHTML(listing) {
 
   container.append(infoContainer);
 
-  updateContainerClass();
   setActiveThumbnailOnLoad(thumbnailsRow);
-  window.addEventListener("resize", updateContainerClass);
 }

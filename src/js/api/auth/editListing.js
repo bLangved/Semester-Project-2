@@ -1,7 +1,8 @@
 import { apiPath } from "../baseUrl.js";
-const urlEndpoint = `${apiPath}/auction/listings/`; // need ID at end
+import { remove } from "../../storage/remove.js";
 
-export async function updateListing(object) {
+export async function editListing(newObject) {
+  const urlEndpoint = `${apiPath}/auction/listings/${newObject.id}`;
   const token = localStorage.getItem("token");
   try {
     const data = {
@@ -10,10 +11,11 @@ export async function updateListing(object) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(object),
+      body: JSON.stringify(newObject),
     };
     const response = await fetch(urlEndpoint, data);
     if (response.ok) {
+      remove("currentListing");
       alert("Listing updated");
       window.location.href = "index.html";
     } else {
