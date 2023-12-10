@@ -119,6 +119,7 @@ header {
 }
 
 #avatarContainer img {
+  width: 2.75em;
   height: 2.75em;
   border-radius: 50%;
 }
@@ -261,6 +262,7 @@ footer {
 /* --- Profile page --- */
 #profileContainer img {
   height: 15em;
+  width: 15em;
   border-radius: 50%;
 }
 #profileContainer img:hover {
@@ -302,17 +304,15 @@ footer {
 }
 
 .sellerContainer-listing {
-  background-color: lightgray;
+  background-color: rgb(225, 225, 225);
 }
 .sellerContainer-listing img {
   width: 4em;
+  height: 4em;
 }
 
 .bidderContainer-listing {
-  background-color: lightgray;
-}
-.bidderContainer-listing img {
-  width: 3em;
+  background-color: rgb(225, 225, 225);
 }
 
 /* --- INDEX --- */

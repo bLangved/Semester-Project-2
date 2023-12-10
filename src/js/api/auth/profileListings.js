@@ -1,5 +1,6 @@
 import { apiPath } from "../baseUrl.js";
-const urlEndpoint = `${apiPath}/auction/profiles/bjornar_langved/listings`;
+const profileName = JSON.parse(localStorage.getItem("profile")).name;
+const urlEndpoint = `${apiPath}/auction/profiles/${profileName}/listings`;
 
 export async function fetchProfileListings(queryParams) {
   const token = localStorage.getItem("token");

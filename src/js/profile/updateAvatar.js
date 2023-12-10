@@ -9,7 +9,8 @@ const urlEndpoint = `${apiPath}/auction/profiles/${userName}/media`;
  * @param {string} imageUrl - url where image is stored
  */
 export async function updateAvatar(imageUrl) {
-  const token = JSON.parse(localStorage.getItem("token"));
+  console.log(imageUrl);
+  const token = localStorage.getItem("token");
   try {
     const data = {
       method: "PUT",
@@ -22,6 +23,7 @@ export async function updateAvatar(imageUrl) {
     const response = await fetch(urlEndpoint, data);
     if (response.ok) {
       await response.json();
+      console.log(response);
       updateAvatarInput.value = "";
       const profile = JSON.parse(localStorage.getItem("profile"));
       profile.avatar = imageUrl;

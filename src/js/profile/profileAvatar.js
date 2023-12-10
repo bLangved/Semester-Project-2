@@ -56,7 +56,6 @@ updateBtn.addEventListener("click", () => {
 submitUpdateBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (isValidUrl(updateAvatarInput.value)) {
-    console.log("Valid URL");
     updateAvatar(updateAvatarInput.value);
   } else {
     alert("Invalid URL");
