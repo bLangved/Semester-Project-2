@@ -21,6 +21,12 @@ export async function submitBid(bid) {
     };
     const response = await fetch(urlEndpoint, data);
     if (response.ok) {
+      const profileString = localStorage.getItem("profile");
+      if (profileString) {
+        const profile = JSON.parse(profileString);
+        profile.credits -= bid;
+        localStorage.setItem("profile", JSON.stringify(profile));
+      }
       window.location.reload();
     } else {
       const errorResponse = await response.json();

@@ -36,7 +36,7 @@ export async function login(userObject) {
       loadingAnimation.classList.add("d-none");
       setTimeout(() => {
         window.location.href = "/index.html";
-      }, 5000);
+      }, 2000);
       return profile;
     } else {
       statusContainer.classList.toggle("d-none");

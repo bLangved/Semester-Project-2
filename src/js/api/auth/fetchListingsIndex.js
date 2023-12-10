@@ -27,6 +27,7 @@ function getNewestListingsParams() {
     sort: "created",
     sortOrder: "desc",
     _bids: "true",
+    _active: "true",
   });
 }
 
@@ -36,6 +37,7 @@ function getTag1ListingsParams() {
     sort: "created",
     sortOrder: "desc",
     _tag: "vinyl",
+    _active: "true",
   });
 }
 

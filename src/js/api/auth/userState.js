@@ -1,6 +1,6 @@
 import { logout } from "./logout.js";
 
-export function toggleLoginDisplay() {
+export function updateUserProfileDisplay() {
   const isLoggedIn = Boolean(localStorage.getItem("token"));
   document.querySelector("#loginItem").classList.toggle("d-none", isLoggedIn);
   document.querySelector("#logoutItem").classList.toggle("d-none", !isLoggedIn);
@@ -20,6 +20,5 @@ export function toggleLoginDisplay() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", toggleLoginDisplay);
-
+document.addEventListener("DOMContentLoaded", updateUserProfileDisplay);
 document.querySelector("#logoutItem").addEventListener("click", logout);

@@ -1,6 +1,5 @@
 import { timeRemaining } from "../formatting/dateFormatting.js";
 export function createCards(object, container) {
-  console.log(object);
   const cardWrapper = document.createElement("div");
   cardWrapper.classList.add("col-6", "col-md-4", "col-lg-3", "p-1");
   const card = document.createElement("a");
