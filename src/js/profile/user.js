@@ -19,9 +19,6 @@ export function initializeProfilePage() {
           profile.name,
         );
       }
-      if (profile.credits) {
-        document.querySelector("#creditsProfile").innerText = profile.credits;
-      }
     }
   }
 }

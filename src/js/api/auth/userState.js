@@ -1,5 +1,4 @@
 import { logout } from "./logout.js";
-import { formatName } from "../../formatting/profileObject.js";
 
 export function toggleLoginDisplay() {
   const isLoggedIn = Boolean(localStorage.getItem("token"));
@@ -13,9 +12,6 @@ export function toggleLoginDisplay() {
 
       if (profile.avatar) {
         document.querySelector("#avatarNav").src = profile.avatar;
-      }
-      if (profile.name) {
-        document.querySelector("#nameNav").innerText = formatName(profile.name);
       }
       if (profile.credits) {
         document.querySelector("#creditsNav").innerText = profile.credits;

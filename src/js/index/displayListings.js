@@ -1,7 +1,7 @@
 import {
   fetchNewestListings,
   fetchTag1Listings,
-} from "../api/auth/fetchHomePageListings.js";
+} from "../api/auth/fetchListingsIndex.js";
 import { createCards } from "./cards.js";
 
 document.addEventListener("DOMContentLoaded", async function () {

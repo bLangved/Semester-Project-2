@@ -1,26 +1,40 @@
-import { fetchProfileListings } from "../api/auth/profileListings.js";
+import {
+  fetchActiveListings,
+  fetchInactiveListings,
+} from "../api/auth/profileListings.js";
 import { createCardsProfile } from "./listingCard.js";
 
-async function displayPersonalListings() {
-  const container = document.querySelector("#listingsContainer");
+document.addEventListener("DOMContentLoaded", async function () {
   try {
-    let listings = await fetchProfileListings();
-    console.log(listings);
-
-    listings = listings.sort((a, b) => {
-      const dateA = new Date(a.endsAt).getTime();
-      const dateB = new Date(b.endsAt).getTime();
-      return dateA - dateB;
+    // Active listings
+    const listingsActive = await fetchActiveListings();
+    const containerActive = document.querySelector("#activeListingsContainer");
+    listingsActive.forEach((listing) => {
+      createCardsProfile(listing, containerActive);
     });
 
-    listings.forEach((listing) => {
-      createCardsProfile(listing, container);
-    });
+    // Inactive listings
+    let listingsInactive = await fetchInactiveListings();
+    listingsInactive = filterInactiveListings(listingsInactive);
+    const containerInactive = document.querySelector(
+      "#inactiveListingsContainer",
+    );
+    if (listingsInactive.length > 0) {
+      listingsInactive.forEach((listing) => {
+        createCardsProfile(listing, containerInactive);
+      });
+    } else {
+      console.log("No inactive listings found");
+    }
   } catch (error) {
-    console.error("Failed to load listings:", error);
+    console.error("Error loading listings:", error.message);
   }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  displayPersonalListings();
 });
+
+function filterInactiveListings(listings) {
+  const currentDate = new Date();
+  return listings.filter((listing) => {
+    const endsAtDate = new Date(listing.endsAt);
+    return endsAtDate < currentDate;
+  });
+}
