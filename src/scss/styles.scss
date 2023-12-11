@@ -125,11 +125,33 @@ header {
   #searchbarInputContainer {
     position: fixed;
     top: 5em;
+    left: 0;
     width: 100%;
+    border-radius: 0.5em 0;
   }
   .searchbar-input {
     border: none;
     height: 3em;
+  }
+}
+
+#searchbarInputContainer {
+  padding: 0.25em;
+  border-radius: 0.375rem;
+  background-color: white;
+  .searchbar-input {
+    border: none;
+    &:placeholder-shown {
+      padding-left: 0.5em;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  button {
+    &:hover {
+      background-color: lightgray;
+    }
   }
 }
 
@@ -229,6 +251,17 @@ footer {
     border-top-color: #3498db;
     transform: rotate(360deg);
   }
+}
+
+/* --- searchResult-container --- */
+.searchResult-container {
+  position: fixed;
+  top: 10em;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  background-color: white;
+  z-index: 99;
 }
 
 /* --- Auth page -- */

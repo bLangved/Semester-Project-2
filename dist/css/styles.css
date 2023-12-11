@@ -107,13 +107,33 @@ header {
   #searchbarInputContainer {
     position: fixed;
     top: 5em;
+    left: 0;
     width: 100%;
+    border-radius: 0.5em 0;
   }
   .searchbar-input {
     border: none;
     height: 3em;
   }
 }
+#searchbarInputContainer {
+  padding: 0.25em;
+  border-radius: 0.375rem;
+  background-color: white;
+}
+#searchbarInputContainer .searchbar-input {
+  border: none;
+}
+#searchbarInputContainer .searchbar-input:placeholder-shown {
+  padding-left: 0.5em;
+}
+#searchbarInputContainer .searchbar-input:focus {
+  outline: none;
+}
+#searchbarInputContainer button:hover {
+  background-color: lightgray;
+}
+
 .nav-item_header {
   font-size: 1.25rem;
 }
@@ -195,6 +215,17 @@ footer {
     transform: rotate(360deg);
   }
 }
+/* --- searchResult-container --- */
+.searchResult-container {
+  position: fixed;
+  top: 10em;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  background-color: white;
+  z-index: 99;
+}
+
 /* --- Auth page -- */
 .logoContainer_auth-page img {
   height: 5em;

@@ -28,8 +28,3 @@ searchbarButton.addEventListener("click", function () {
     navbarIcon.classList.toggle("active");
   }
 });
-window.addEventListener("resize", function () {
-  if (window.innerWidth >= 768) {
-    searchbarContainer.classList.add("d-none");
-  }
-});
