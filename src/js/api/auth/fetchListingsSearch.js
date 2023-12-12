@@ -21,7 +21,7 @@ async function fetchListings(queryParams) {
   }
 }
 
-function getSearchParams(tag) {
+function getSearchTagParams(tag) {
   return new URLSearchParams({
     limit: "8",
     sort: "created",
@@ -31,6 +31,8 @@ function getSearchParams(tag) {
   });
 }
 
+// Function to fetch listings based on tag and title
 export async function fetchSearch(tag) {
-  return fetchListings(getSearchParams(tag));
+  const tagResults = await fetchListings(getSearchTagParams(tag));
+  return tagResults;
 }

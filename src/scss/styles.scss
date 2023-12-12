@@ -256,12 +256,30 @@ footer {
 /* --- searchResult-container --- */
 .searchResult-container {
   position: fixed;
-  top: 10em;
+  top: 8em;
   left: 0;
   right: 0;
   width: 100vw;
   background-color: white;
   z-index: 99;
+
+  @media (min-width: 768px) {
+    top: 6em;
+  }
+}
+
+.card-container_search {
+  height: 6em;
+  max-width: 100%;
+
+  a {
+    width: 100%;
+  }
+
+  img {
+    height: 6em;
+    width: 6em;
+  }
 }
 
 /* --- Auth page -- */

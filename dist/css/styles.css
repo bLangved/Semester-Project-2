@@ -218,12 +218,29 @@ footer {
 /* --- searchResult-container --- */
 .searchResult-container {
   position: fixed;
-  top: 10em;
+  top: 8em;
   left: 0;
   right: 0;
   width: 100vw;
   background-color: white;
   z-index: 99;
+}
+@media (min-width: 768px) {
+  .searchResult-container {
+    top: 6em;
+  }
+}
+
+.card-container_search {
+  height: 6em;
+  max-width: 100%;
+}
+.card-container_search a {
+  width: 100%;
+}
+.card-container_search img {
+  height: 6em;
+  width: 6em;
 }
 
 /* --- Auth page -- */

@@ -1,5 +1,6 @@
 import { apiPath } from "../baseUrl.js";
 import { save } from "../../storage/save.js";
+import { fetchAllListings } from "./fetchAndStoreListings.js";
 import loadingAnimation from "../../animations/loadingAnimation.js";
 const urlEndpoint = `${apiPath}/auction/auth/login`;
 
@@ -25,6 +26,7 @@ export async function login(userObject) {
     };
     const response = await fetch(urlEndpoint, postData);
     if (response.ok) {
+      fetchAllListings();
       const profile = await response.json();
       save("token", profile.accessToken);
       delete profile.accessToken;
