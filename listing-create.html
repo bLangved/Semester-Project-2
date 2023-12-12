@@ -95,23 +95,38 @@
         class="col-4 d-flex align-items-center justify-content-center"
         id="searchbarContainer"
       >
-        <button
-          class="d-md-none d-flex align-items-center justify-content-center"
-          id="searchbarButton"
-          type="button"
-          aria-label="Toggle searchbar"
-        >
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-        <div class="d-none d-md-block shadow-lg" id="searchbarInputContainer">
-          <input
-            class="form-control searchbar-input"
-            id="searchbarInput"
-            type="text"
-            placeholder="Search website"
-          />
-        </div>
+        <form class="d-flex">
+          <button
+            class="d-flex d-md-none align-items-center justify-content-center"
+            id="searchbarButton"
+            type="button"
+            aria-label="Toggle searchbar"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+
+          <div
+            class="d-none d-flex d-md-flex align-items-center shadow"
+            id="searchbarInputContainer"
+          >
+            <input
+              class="searchbar-input"
+              id="searchbarInput"
+              type="text"
+              name="query"
+              placeholder="Search website"
+            />
+            <button
+              class="btn align-items-center justify-content-center ms-auto"
+              id="searchSubmit"
+              type="submit"
+            >
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </form>
       </div>
+
       <!-- Profile -->
       <div class="col-4" id="avatarContainer">
         <a
@@ -128,6 +143,22 @@
       </div>
     </header>
     <main class="main_auth d-flex align-items-center justify-content-center">
+      <div
+        class="container d-none shadow p-3 p-lg-4 rounded searchResult-container"
+        id="searchContainer"
+      >
+        <h2 id="searchTagsHeader"></h2>
+        <p class="d-none" id="searchTags-message"></p>
+        <div class="row" id="searchTagsRow"></div>
+        <h2 id="searchTitleHeader"></h2>
+        <p class="d-none" id="searchTitle-message"></p>
+        <div class="row" id="searchTitleRow"></div>
+        <div class="container text-center d-none" id="loadingContainer">
+          <span id="loadingText"></span>
+          <div id="loadingAnimation"></div>
+        </div>
+      </div>
+
       <div class="container">
         <h1 class="text-center">Create a listing</h1>
 
@@ -272,5 +303,9 @@
     <script type="module" src="src/js/forms/listingForm.js"></script>
     <script src="src/js/form-controls/addImagesOnListing.js"></script>
     <script src="src/js/form-controls/dateFormatForm.js"></script>
+    <script
+      type="module"
+      src="/src/js/search/displaySearchListings.js"
+    ></script>
   </body>
 </html>
