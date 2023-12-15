@@ -3,6 +3,7 @@ const navbarMenu = document.querySelector("#navbarNav");
 const navbarIcon = document.querySelector(".hamburger-icon");
 const searchbarContainer = document.querySelector("#searchbarInputContainer");
 const searchbarButton = document.querySelector("#searchbarButton");
+const searchContainer = document.querySelector("#searchContainer");
 
 // When clicking back and forth, the hamburger-menu icon might get reversed if toggle with searchbar on mobile aswell
 document.addEventListener("DOMContentLoaded", function () {
@@ -28,3 +29,12 @@ searchbarButton.addEventListener("click", function () {
     navbarIcon.classList.toggle("active");
   }
 });
+
+function handleClickOutside(event) {
+  if (!searchContainer.contains(event.target)) {
+    searchContainer.classList.add("d-none");
+  }
+}
+
+// Add event listener to the whole document
+document.addEventListener("click", handleClickOutside);

@@ -1,6 +1,7 @@
 import { deleteListing } from "../api/auth/deleteListing.js";
 import { timeRemaining, timeSinceDate } from "../formatting/dateFormatting.js";
 import { formatFullName } from "../formatting/profileObject.js";
+import { updateListingInSessionStorage } from "../storage/updateBidInSession.js";
 import { submitBid } from "./addBid.js";
 import { highestBid } from "./highestBid.js";
 import {
@@ -10,6 +11,10 @@ import {
 
 export function createHTML(listing) {
   console.log(listing);
+  const auctionEndTime = new Date(listing.endsAt);
+  const currentTime = new Date();
+  const auctionEnded = currentTime >= auctionEndTime;
+
   const container = document.querySelector("#listingContainerRow");
   container.classList.add(
     "container-md",
@@ -237,39 +242,56 @@ export function createHTML(listing) {
     bidderContainer.append(bidderName, bidAmountContainer, bidDate);
     biddingContainer.append(bidderContainer);
   });
+  if (!auctionEnded) {
+    const placeBidContainer = document.createElement("form");
+    placeBidContainer.classList.add(
+      "form-group",
+      "d-flex",
+      "flex-column",
+      "align-items-center",
+    );
+    const placeBidInput = document.createElement("input");
+    placeBidInput.classList.add("form-control", "mt-3");
+    placeBidInput.type = "number";
+    placeBidInput.placeholder = "Write in your bid";
+    placeBidInput.required = "true";
+    const placeBidButton = document.createElement("button");
+    placeBidButton.innerText = "Submit bid";
+    placeBidButton.classList.add("btn", "btn-primary", "mt-3", "col-12");
+    placeBidButton.type = "submit";
+    placeBidContainer.append(placeBidInput, placeBidButton);
 
-  const placeBidContainer = document.createElement("form");
-  placeBidContainer.classList.add(
-    "form-group",
-    "d-flex",
-    "flex-column",
-    "align-items-center",
-  );
-  const placeBidInput = document.createElement("input");
-  placeBidInput.classList.add("form-control", "mt-3");
-  placeBidInput.type = "number";
-  placeBidInput.placeholder = "Write in your bid";
-  placeBidInput.required = "true";
-  const placeBidButton = document.createElement("button");
-  placeBidButton.innerText = "Submit bid";
-  placeBidButton.classList.add("btn", "btn-primary", "mt-3", "col-12");
-  placeBidButton.type = "submit";
-  placeBidContainer.append(placeBidInput, placeBidButton);
+    placeBidButton.addEventListener("click", async (e) => {
+      e.preventDefault();
+      try {
+        const updatedListing = await submitBid(Number(placeBidInput.value));
+        console.log(updatedListing);
+        updateListingInSessionStorage(updatedListing);
+        window.location.reload();
+      } catch (error) {
+        console.error("Error submitting bid:", error.message);
+      }
+    });
 
-  placeBidButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    submitBid(Number(placeBidInput.value));
-  });
-
-  biddingContainer.append(placeBidContainer);
+    biddingContainer.append(placeBidContainer);
+  }
   infoContainer.append(biddingContainer);
 
-  const watchlistButton = document.createElement("button");
-  watchlistButton.type = "button";
-  watchlistButton.innerText = "Add to watchlist";
-  watchlistButton.classList.add("btn", "btn-info", "col-12");
-  infoContainer.append(watchlistButton);
+  if (auctionEnded && listing.bids && listing.bids.length > 0) {
+    const wonByContainer = document.createElement("div");
+    wonByContainer.classList.add("mt-3");
 
+    const wonByPreText = document.createElement("span");
+    wonByPreText.innerText = "Won by: ";
+    wonByContainer.append(wonByPreText);
+
+    const lastBid = listing.bids[listing.bids.length - 1];
+    const wonByBuyer = document.createElement("span");
+    wonByBuyer.innerText = formatFullName(lastBid.bidderName);
+    wonByContainer.append(wonByBuyer);
+
+    infoContainer.append(wonByContainer);
+  }
   const descriptionContainer = document.createElement("div");
   descriptionContainer.classList.add("mt-5", "mb-5");
   const descriptionHeader = document.createElement("h2");

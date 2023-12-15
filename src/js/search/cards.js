@@ -27,6 +27,7 @@ export function createCards(object, container) {
   card.append(cardBody);
 
   const title = document.createElement("span");
+  title.classList.add("fw-bold");
   if (object.title.length > 25) {
     title.innerText = object.title.substring(0, 25) + "...";
   } else {

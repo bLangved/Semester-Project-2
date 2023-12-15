@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Auction site - Login</title>
+    <title>Auction site - Profile</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -136,7 +136,7 @@
         </div>
       </nav>
     </header>
-    <main class="main_auth d-flex align-items-center justify-content-center">
+    <main>
       <div
         class="container d-none shadow p-3 p-lg-4 rounded searchResult-container"
         id="searchContainer"
@@ -152,124 +152,34 @@
           <div id="loadingAnimation"></div>
         </div>
       </div>
-      <div class="container">
-        <h1 class="text-center">Edit your listing</h1>
-
-        <div class="container text-center d-none" id="loadingContainer">
-          <span id="loadingText"></span>
-          <div id="loadingAnimation"></div>
-        </div>
-        <!-- Status messages -->
+      <div class="container-fluid">
         <div
-          class="container text-center d-flex flex-column align-items-center justify-content-center d-none"
-          id="statusContainer"
+          class="d-flex flex-column align-items-center justify-content-center mt-5 gap-3"
+          id="profileContainer"
         >
-          <i
-            class="fa-regular fa-circle-check fa-2xl d-none"
-            id="statusIconCheck"
-          ></i>
-          <i
-            class="fa-regular fa-circle-xmark fa-2xl d-none"
-            id="statusIconXmark"
-          ></i>
-          <span class="mb-2" id="statusMessage"></span>
-          <button
-            type="btn"
-            class="btn btn-primary col-6 mb-2"
-            id="btnOption1"
-          ></button>
-          <button
-            type="btn"
-            class="btn btn-secondary col-6 mb-2"
-            id="btnOption2"
-          >
-            Go to homepage
-          </button>
+          <img
+            class="img"
+            src="images/avatar.jpeg"
+            alt="Profile picture"
+            id="avatarWatchlist"
+          />
+          <span class="mb-5" id="nameProfile"></span>
         </div>
-
-        <!-- Create listing form -->
-        <div class="container" id="registerContainer">
-          <form class="listing-form" id="listingForm">
-            <div class="form-group mb-4">
-              <label for="title">Title</label>
-              <input
-                type="text"
-                class="form-control"
-                id="title"
-                name="title"
-                placeholder="Enter the listing title here"
-                autocomplete="off"
-                required
-              />
-              <span id="titleMessage" class="error-message"></span>
-            </div>
-            <div class="form-group mb-4">
-              <label for="description">Description</label>
-              <!-- The maxlength doesn't need to be used, but sets a max chars value of the input field. Need at least a way to show the user how many cars left-->
-              <textarea
-                class="form-control"
-                id="description"
-                name="description"
-                placeholder="Enter the product description here"
-                autocomplete="off"
-                maxlength="500"
-              ></textarea>
-              <span id="descriptionMessage" class="error-message"></span>
-            </div>
-            <div class="form-group mb-4">
-              <label for="tags">Tags</label>
-              <input
-                type="text"
-                class="form-control"
-                id="tags"
-                name="tags"
-                placeholder="Enter tags separated by commas"
-                autocomplete="off"
-              />
-              <small id="tagsHelp" class="form-text text-muted"
-                >Add tags to describe your listing, separated by commas (e.g.,
-                vintage, books, collectibles).</small
-              >
-              <span id="tagsMessage" class="error-message"></span>
-            </div>
-            <div class="form-group mb-4">
-              <label for="mainImgUrl">Main image URL</label>
-              <input
-                type="text"
-                class="form-control"
-                id="mainImgUrl"
-                name="mainImgUrl"
-                autocomplete="off"
-                placeholder="Image URL"
-              />
-              <span id="mainImgUrlMessage" class="error-message"></span>
-            </div>
-            <button
-              type="button"
-              id="additionalImagesButton"
-              class="btn btn-secondary col-12 mb-2"
-            >
-              Add additional images
-            </button>
-            <div class="mb-2" id="additionalImagesContainer"></div>
-            <button
-              type="submit"
-              class="btn col-12 submit-btn-custom"
-              id="submitButtonListing"
-            >
-              <span>Submit changes</span>
-            </button>
-            <span id="formMessage" class="error-message d-none"></span>
-          </form>
+        <div class="container">
+          <h2>Ongoing auctions</h2>
+          <div class="row mb-3" id="ongoingListingsContainer"></div>
+          <h2>Auctions won</h2>
+          <div class="row mb-3" id="listingsWonContainer"></div>
         </div>
       </div>
     </main>
-    <footer>@copyright bhlweb 2023</footer>
+    <footer></footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="src/js/header/toggleComponents.js"></script>
     <script type="module" src="src/js/api/auth/userState.js"></script>
-    <script type="module" src="src/js/forms/editListingForm.js"></script>
-    <script src="src/js/form-controls/addImagesOnListing.js"></script>
+    <!-- <script type="module" src="src/js/profile/user.js"></script>
+    <script type="module" src="src/js/profile/profileAvatar.js"></script> -->
+    <script type="module" src="src/js/listingsWon/displayListings.js"></script>
     <script
       type="module"
       src="/src/js/search/displaySearchListings.js"

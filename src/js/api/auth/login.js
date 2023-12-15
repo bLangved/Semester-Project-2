@@ -26,7 +26,6 @@ export async function login(userObject) {
     };
     const response = await fetch(urlEndpoint, postData);
     if (response.ok) {
-      fetchAllListings();
       const profile = await response.json();
       save("token", profile.accessToken);
       delete profile.accessToken;
@@ -35,10 +34,9 @@ export async function login(userObject) {
       statusMessage.innerText =
         "Sucsessful login. You will redirected to homepage shortly";
       statusIconCheck.classList.toggle("d-none");
+      await fetchAllListings();
       loadingAnimation.classList.add("d-none");
-      setTimeout(() => {
-        window.location.href = "/index.html";
-      }, 2000);
+      window.location.href = "/index.html";
       return profile;
     } else {
       statusContainer.classList.toggle("d-none");
