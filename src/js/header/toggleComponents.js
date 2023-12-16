@@ -5,12 +5,20 @@ const searchbarContainer = document.querySelector("#searchbarInputContainer");
 const searchbarButton = document.querySelector("#searchbarButton");
 const searchContainer = document.querySelector("#searchContainer");
 
-// When clicking back and forth, the hamburger-menu icon might get reversed if toggle with searchbar on mobile aswell
 document.addEventListener("DOMContentLoaded", function () {
   navbarMenu.classList.add("slide-out-to-right");
 
+  // NAVBAR
   navbarToggler.addEventListener("click", function () {
-    navbarIcon.classList.toggle("active");
+    toggleNavbarMenu();
+  });
+
+  function toggleNavbarMenu() {
+    if (!navbarIcon.classList.contains("active")) {
+      navbarIcon.classList.add("active");
+    } else {
+      navbarIcon.classList.remove("active");
+    }
     if (!searchbarContainer.classList.contains("d-none")) {
       searchbarContainer.classList.add("d-none");
     }
@@ -19,22 +27,47 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       navbarMenu.classList.replace("slide-out-to-right", "slide-to-center");
     }
-  });
-});
+  }
 
-searchbarButton.addEventListener("click", function () {
-  searchbarContainer.classList.toggle("d-none");
-  if (navbarIcon.classList.contains("active")) {
-    navbarMenu.classList.add("slide-out-to-right");
-    navbarIcon.classList.toggle("active");
+  // SEARCHBAR
+  searchbarButton.addEventListener("click", function () {
+    toggleSearchbar();
+  });
+
+  function toggleSearchbar() {
+    if (searchbarContainer.classList.contains("d-none")) {
+      searchbarContainer.classList.remove("d-none");
+    } else {
+      searchbarContainer.classList.add("d-none");
+    }
+    if (navbarMenu.classList.contains("slide-to-center")) {
+      navbarIcon.classList.remove("active");
+      navbarMenu.classList.replace("slide-to-center", "slide-out-to-right");
+    }
   }
 });
 
 function handleClickOutside(event) {
-  if (!searchContainer.contains(event.target)) {
+  if (
+    !searchbarButton.contains(event.target) &&
+    !searchbarContainer.classList.contains("d-none")
+  ) {
+    searchbarContainer.classList.add("d-none");
+  }
+
+  if (
+    !searchContainer.contains(event.target) &&
+    !searchContainer.classList.contains("d-none")
+  ) {
     searchContainer.classList.add("d-none");
+  }
+  if (
+    !navbarToggler.contains(event.target) &&
+    navbarMenu.classList.contains("slide-to-center")
+  ) {
+    navbarIcon.classList.remove("active");
+    navbarMenu.classList.replace("slide-to-center", "slide-out-to-right");
   }
 }
 
-// Add event listener to the whole document
 document.addEventListener("click", handleClickOutside);

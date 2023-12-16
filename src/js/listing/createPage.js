@@ -56,6 +56,7 @@ export function createHTML(listing) {
       carouselInner.append(carouselItem);
     });
   }
+  setupActiveImageClickEvent();
   carouselContainer.append(carouselInner);
   imagesContainer.append(carouselContainer);
 
@@ -83,6 +84,7 @@ export function createHTML(listing) {
 
       thumbnail.addEventListener("click", () => {
         setActiveCarouselItem(index, carouselInner, thumbnailsRow);
+        setupActiveImageClickEvent();
       });
 
       col.append(thumbnail);
@@ -133,6 +135,7 @@ export function createHTML(listing) {
       activeIndex = carouselInner.children.length - 1;
     }
     setActiveCarouselItem(activeIndex, carouselInner, thumbnailsRow);
+    setupActiveImageClickEvent();
   });
 
   nextButton.addEventListener("click", () => {
@@ -141,6 +144,7 @@ export function createHTML(listing) {
       activeIndex = 0;
     }
     setActiveCarouselItem(activeIndex, carouselInner, thumbnailsRow);
+    setupActiveImageClickEvent();
   });
 
   function findActiveCarouselIndex(carouselInner) {
@@ -149,8 +153,23 @@ export function createHTML(listing) {
     );
   }
 
-  carouselContainer.append(prevButton);
-  carouselContainer.append(nextButton);
+  function setupActiveImageClickEvent() {
+    const imgs = carouselInner.querySelectorAll("img");
+    imgs.forEach((img) => {
+      img.onclick = null;
+    });
+
+    const activeItem = carouselInner.querySelector(".carousel-item.active");
+    if (activeItem) {
+      const img = activeItem.querySelector("img");
+      if (img) {
+        img.style.cursor = "pointer";
+        img.onclick = () => window.open(img.src, "_blank");
+      }
+    }
+  }
+
+  carouselContainer.append(prevButton, nextButton);
 
   container.append(imagesContainer);
 
@@ -177,7 +196,7 @@ export function createHTML(listing) {
   });
   infoContainer.append(tagsContainer);
 
-  const sellerContainer = document.createElement("a");
+  const sellerContainer = document.createElement("div");
   sellerContainer.classList.add(
     "container",
     "d-flex",
@@ -186,7 +205,7 @@ export function createHTML(listing) {
     "rounded-4",
     "sellerContainer-listing",
   );
-  sellerContainer.href = `profile.html`;
+  // sellerContainer.href = `profile.html`;
   const sellerAvatar = document.createElement("img");
   sellerAvatar.classList.add("img-thumbnail", "rounded-circle");
   sellerAvatar.src = listing.seller.avatar || "/images/avatar.jpeg";
@@ -228,14 +247,14 @@ export function createHTML(listing) {
     );
     const bidderName = document.createElement("span");
     bidderName.classList.add("ms-1");
-    bidderName.innerText = `Bidder: ${formatFullName(bid.bidderName)}`;
+    bidderName.innerText = `${formatFullName(bid.bidderName)}`;
     const bidAmountContainer = document.createElement("div");
     bidAmountContainer.classList.add("d-flex", "align-items-center");
     const amountIcon = document.createElement("i");
     amountIcon.classList.add("fa-solid", "fa-coins", "fa-lg", "credits-icon");
     const amount = document.createElement("span");
     amount.classList.add("ms-1");
-    amount.innerText = `${bid.amount} credit`;
+    amount.innerText = `${bid.amount}`;
     bidAmountContainer.append(amountIcon, amount);
     const bidDate = document.createElement("span");
     bidDate.innerText = timeSinceDate(bid.created);
