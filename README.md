@@ -10,10 +10,16 @@ This is my delivery for the subject "Semester Project 2". The goal for the assig
 ## Description
 
 ### Brief
+
 An auction site is looking to launch a website where users can add items to be bid on and bid on items other users have put up for auction.
 When a new user joins the website, they are given 1000 credits to use on the site. They can get credits by selling items and use credit by buying items. 
 Non-registered users can search through the listings, but only registered users can make bids on listings.
 
+### Target audience
+
+Target audience is:  
+- Males/females who are interested in lp's / vinyls (analog records)
+- Age span 20-35 years old.
 
 ## Technologies Used
 
