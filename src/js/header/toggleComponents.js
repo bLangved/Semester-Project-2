@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       searchbarContainer.classList.add("d-none");
     }
+
     if (navbarMenu.classList.contains("slide-to-center")) {
       navbarIcon.classList.remove("active");
       navbarMenu.classList.replace("slide-to-center", "slide-out-to-right");
@@ -50,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function handleClickOutside(event) {
   if (
     !searchbarButton.contains(event.target) &&
+    !searchbarContainer.contains(event.target) &&
     !searchbarContainer.classList.contains("d-none")
   ) {
     searchbarContainer.classList.add("d-none");

@@ -34,6 +34,8 @@ body {
     "main"
     "footer";
   background-color: $color-white;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 header {
@@ -59,7 +61,7 @@ header {
     background-color: $color-white;
 
     &:hover {
-      background-color: rgb(230, 230, 230);
+      background-color: $color-whiteish;
       transition: background-color 0.1s ease-in-out;
     }
   }
@@ -75,17 +77,13 @@ header {
     left: 0;
     width: 100%;
     border-radius: 0.5em 0;
-
+    background-color: $color-white;
+    padding: 0.25em;
+    border-radius: 0.375rem;
     .searchbar-input {
       border: none;
       height: 3em;
-    }
-
-    padding: 0.25em;
-    border-radius: 0.375rem;
-    background-color: white;
-    .searchbar-input {
-      border: none;
+      width: 100%;
       &:placeholder-shown {
         padding-left: 0.5em;
       }
@@ -94,8 +92,9 @@ header {
       }
     }
     button {
+      background-color: $color-white;
       &:hover {
-        background-color: lightgray;
+        background-color: $color-light-gray;
       }
     }
 
@@ -221,13 +220,13 @@ header {
 }
 
 .credits-icon {
-  color: rgb(212, 175, 55);
+  color: $color-gold;
 }
 
 main {
   margin: 5em auto auto;
   max-width: 70em;
-  min-height: 75vh;
+  min-height: 58em;
 }
 
 .main_auth {
@@ -333,12 +332,12 @@ footer {
 /* --- searchResult-container --- */
 .searchResult-container {
   position: fixed;
-  top: 5em;
+  top: 8em;
   left: 0;
   right: 0;
   max-height: 40em;
   width: 100vw;
-  background-color: white;
+  background-color: $color-white;
   z-index: 99;
 
   @media (min-width: 768px) {
@@ -422,13 +421,11 @@ footer {
   z-index: 0;
 }
 
-.error-message {
-  color: red;
-}
-
+.error-message,
 .iconForm-error {
   color: red;
 }
+
 .iconForm-sucsess {
   color: green;
 }
@@ -507,12 +504,7 @@ footer {
   }
 }
 
-.carousel-item {
-  //   max-width: 40em;
-}
-
 .active-thumbnail {
-  //   max-height: 10em;
   border: 2px solid black;
 }
 
