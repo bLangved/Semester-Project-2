@@ -1,5 +1,5 @@
 import { initializeProfilePage } from "./user.js";
-import { toggleLoginDisplay } from "../api/auth/userState.js";
+import { updateUserProfileDisplay } from "../api/auth/userState.js";
 import { apiPath } from "../api/baseUrl.js";
 const updateAvatarInput = document.querySelector("#newAvatarUrl");
 const userName = JSON.parse(localStorage.getItem("profile"))?.name;
@@ -27,7 +27,7 @@ export async function deleteAvatar() {
       profile.avatar = emptyAvatar;
       localStorage.setItem("profile", JSON.stringify(profile));
       initializeProfilePage();
-      toggleLoginDisplay();
+      updateUserProfileDisplay();
       setTimeout(() => location.reload(), 250);
     } else {
       console.log("Status Code:", response.status);

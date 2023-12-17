@@ -4,10 +4,19 @@ a {
   cursor: pointer;
 }
 
+li {
+  cursor: pointer;
+}
+
+hr {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+
 img,
 video {
   max-width: 100%;
-  cursor: pointer;
 }
 
 body {
@@ -149,19 +158,19 @@ header {
   }
 }
 
-.navbar-nav .nav-item_header {
+.custom-navbar_header .nav-item_header {
   font-size: 1.25rem;
 }
-.navbar-nav li span,
-.navbar-nav li i:not(.credits-icon) {
+.custom-navbar_header li span,
+.custom-navbar_header li i:not(.credits-icon) {
   color: rgb(15, 15, 15);
 }
-.navbar-nav li:hover:not(:first-child) {
+.custom-navbar_header li:hover:not(:first-child) {
   padding-left: 0.5em;
   transition: padding-left 0.2s ease-in-out;
 }
-.navbar-nav li:hover:not(:first-child) span,
-.navbar-nav li:hover:not(:first-child) i {
+.custom-navbar_header li:hover:not(:first-child) span,
+.custom-navbar_header li:hover:not(:first-child) i {
   color: rgb(5, 5, 5);
 }
 
@@ -187,11 +196,33 @@ header {
 }
 
 main {
-  margin-top: 5em;
+  margin: 5em auto auto;
+  max-width: 70em;
+  min-height: 75vh;
 }
 
-footer {
-  text-align: center;
+.main_auth {
+  margin: initial;
+  max-width: none;
+}
+
+.body_auth {
+  background-color: rgb(35, 38, 42);
+  color: rgb(245, 245, 245);
+}
+
+footer .footer-wrapper {
+  background-color: rgb(35, 38, 42);
+  color: rgb(153, 153, 153);
+}
+footer .footer-wrapper div:first-child {
+  max-width: 40em;
+}
+footer .footer-wrapper .logoContainer_footer img {
+  height: 8em;
+}
+footer .footer-wrapper li:hover {
+  color: rgb(250, 250, 250);
 }
 
 #loginContainer,
@@ -263,7 +294,7 @@ footer {
   top: 5em;
   left: 0;
   right: 0;
-  max-height: 30em;
+  max-height: 40em;
   width: 100vw;
   background-color: white;
   z-index: 99;
@@ -288,7 +319,12 @@ footer {
 
 /* --- Auth page -- */
 .logoContainer_auth-page img {
-  height: 5em;
+  height: 10em;
+}
+
+.login-form {
+  margin: 0 auto;
+  max-width: 40em;
 }
 
 #statusContainer #statusIconCheck,
@@ -309,19 +345,26 @@ footer {
 #submitButtonListing {
   position: relative;
   overflow: hidden;
-  background-color: rgb(200, 200, 200);
+  background-color: rgb(153, 153, 153);
+  border: none;
   z-index: 1;
+}
+#submitButtonLogin:hover:before,
+#submitButtonRegister:hover:before,
+#submitButtonListing:hover:before {
+  background-color: rgb(0, 160, 0);
 }
 #submitButtonLogin span,
 #submitButtonRegister span,
 #submitButtonListing span {
   position: relative;
   z-index: 2;
+  color: rgb(245, 245, 245);
 }
-#submitButtonLogin:hover,
-#submitButtonRegister:hover,
-#submitButtonListing:hover {
-  background-color: rgb(180, 180, 180);
+#submitButtonLogin span:hover,
+#submitButtonRegister span:hover,
+#submitButtonListing span:hover {
+  color: rgb(250, 250, 250);
 }
 
 #submitButtonLogin::before,
@@ -355,6 +398,7 @@ footer {
   height: 15em;
   width: 15em;
   border-radius: 50%;
+  object-fit: cover;
 }
 #profileContainer img:hover {
   transition: filter 0.2s ease-in-out;

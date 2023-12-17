@@ -1,13 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Auction site - Home</title>
+    <title>Webrecords - Home</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link
-      rel="stylesheet"
-      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
-    /> -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -21,7 +17,7 @@
     ></script>
     <link
       rel="shortcut icon"
-      href="https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=16"
+      href="images/webrecords-logo.png"
       type="image/x-icon"
     />
   </head>
@@ -89,7 +85,7 @@
           class="collapse navbar-collapse shadow-lg nav-content"
           id="navbarNav"
         >
-          <ul class="navbar-nav gap-4">
+          <ul class="navbar-nav custom-navbar_header gap-4">
             <li
               class="nav-item nav-item_header shadow mt-2 user-container_header"
               id="userContainer"
@@ -157,15 +153,45 @@
         </div>
       </div>
       <div class="container">
-        <h2>Listings by tags:</h2>
-        <div class="row mb-5" id="tagsRow_index"></div>
-        <h2>Newest listings</h2>
+        <h2 class="mt-5">Newest listings</h2>
         <div class="row mb-5" id="listingRowNewest"></div>
         <h2>By tag: vinyl</h2>
         <div class="row mb-5" id="listingRowTag1"></div>
       </div>
     </main>
-    <footer>@copyright bhlweb 2023</footer>
+    <footer>
+      <div class="footer-wrapper p-5">
+        <div class="row pt-md-4 pb-md-4 ms-md-auto me-md-auto">
+          <div
+            class="col-md-6 mb-5 mb-md-3 logoContainer_footer d-md-flex align-items-center justify-content-center"
+          >
+            <img src="/images/webrecords-logo.png" alt="Logo" />
+          </div>
+          <div
+            class="col-md-6 mb-5 mb-md-3 d-md-flex align-items-center justify-content-center"
+          >
+            <div class="row">
+              <ul class="col-md-6 mb-4 mb-md-0 navbar-nav gap-1">
+                <li class="nav-item">Artists A-Z</li>
+                <li class="nav-item">About us</li>
+                <li class="nav-item">Contact us</li>
+                <li class="nav-item">Shipping and delivery</li>
+              </ul>
+              <ul class="col-md-6 mb-4 mb-md-0 navbar-nav gap-1">
+                <li class="nav-item">Return policy</li>
+                <li class="nav-item">Payment methods</li>
+                <li class="nav-item">FAQ</li>
+                <li class="nav-item">Privacy policy</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="d-flex align-items-center justify-content-center">
+          <span>@copyright bhlweb 2023</span>
+        </div>
+      </div>
+    </footer>
     <script type="module" src="src/js/api/auth/userState.js"></script>
     <script src="src/js/header/toggleComponents.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
