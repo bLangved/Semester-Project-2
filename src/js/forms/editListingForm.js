@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 let listingId = null;
 
 function updateListingForm(listing) {
-  console.log(listing);
+  // console.log(listing);
 
   listingId = listing.id;
   title.value = listing.title;

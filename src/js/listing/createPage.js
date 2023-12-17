@@ -10,7 +10,7 @@ import {
 } from "./imageActiveState.js";
 
 export function createHTML(listing) {
-  console.log(listing);
+  // console.log(listing);
   const auctionEndTime = new Date(listing.endsAt);
   const currentTime = new Date();
   const auctionEnded = currentTime >= auctionEndTime;
