@@ -5,24 +5,24 @@ This is my delivery for the subject "Semester Project 2". The goal for the assig
 
 ## Status
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/694e5e8a-8c63-472d-b5dd-b2c5011ad559/deploy-status)](https://app.netlify.com/sites/semesterproject2-bhl/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9c29a094-4c43-43a5-a565-6643a638cfe5/deploy-status)](https://app.netlify.com/sites/sp2-bhl/deploys)
 
 ## Description
 
-Throughout the assigment, I ...
+### Brief
+An auction site is looking to launch a website where users can add items to be bid on and bid on items other users have put up for auction.
+When a new user joins the website, they are given 1000 credits to use on the site. They can get credits by selling items and use credit by buying items. 
+Non-registered users can search through the listings, but only registered users can make bids on listings.
+
 
 ## Technologies Used
 
 - HTML
 - Bootstrap
-- SASS
+- SCSS / SASS
 - JavaScript
 - Prettier
 - EsLint
-- Husky
-- Jest
-- Babel
-- Cypress
 
 ## Getting started
 
@@ -31,26 +31,6 @@ Throughout the assigment, I ...
 To get project up and running, use the following terminal command that installs all necessary dependencies.
 
 - npm install
-
-## Testing
-
-Tests are run automatically on Pull Requests. This ensures only quality code gets submitted to project, and are required to pass.
-
-### Unit-testing
-
-Jest-tests are found inside src/js/api/auth
-To run unit-tests with jest, use the following terminal command:
-
-- npm run test
-
-### E2E-testing
-
-Cypress-tests are found inside cypress/e2e
-To E2E-tests with Cypress, use the following terminal command:
-
-- npm run test-e2e
-
-For E2E-testing, you also need to create a _cypress.env.json_ with valid login credentials. See the cypress.example.env.json file in root folder for template.
 
 ### Contributing
 
