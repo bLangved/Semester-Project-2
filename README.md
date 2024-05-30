@@ -1,3 +1,6 @@
+![bilde](https://github.com/bLangved/Semester-Project-2/assets/101604131/10778e97-b653-4d49-b3f9-72a1c36115f4)
+
+
 # Semester Project 2
 
 This is my delivery for the subject "Semester Project 2". The goal for the assigment was as follows:
@@ -35,9 +38,27 @@ Target audience is:
 
 ### Installations
 
-To get project up and running, use the following terminal command that installs all necessary dependencies.
+To get project up and running, use the following terminal command. 
 
-- npm install
+1. Clone the repo:
+
+```properties
+git clone git@github.com:bLangved/frontend-frameworks-ca.git
+```
+
+2. Install the dependencies:
+
+```properties
+npm install
+```
+
+### Running
+
+To run the app, run the following command:
+
+```properties
+npm run dev
+```
 
 ### Contributing
 
