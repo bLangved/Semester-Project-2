@@ -4,6 +4,8 @@
 This is my delivery for the subject "Semester Project 2". The goal for the assigment was as follows:
 "To take the skills learned over the past three semesters and create an auction website."
 
+[Live link to website](https://bhlweb-webrecords.netlify.app)
+
 ## Status badges
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9c29a094-4c43-43a5-a565-6643a638cfe5/deploy-status)](https://app.netlify.com/sites/sp2-bhl/deploys)
 
